@@ -191,6 +191,5 @@ L. Mosley, *A Balanced Approach to the Multi-class Imbalance Problem*. PhD thesi
 
 ### Articles
 * https://machinelearningmastery.com/multi-class-imbalanced-classification/
-* https://www.pdfdrive.com/a-balanced-approach-to-the-multi-class-imbalance-problem-d19601452.html
-* https://www.pdfdrive.com/combating-the-class-imbalance-problem-in-small-sample-data-sets-d30277404.html
+
 
