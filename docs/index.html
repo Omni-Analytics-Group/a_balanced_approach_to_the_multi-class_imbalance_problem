@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Balanced Approach to the Multi-Class Imbalance Problem</title>
+  <meta name="description" content="Class Balance Accuracy, the 2013 dissertation that introduced it, the works that cite it, and a guide to modern multi-class imbalance research.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Lawrence Mosley · PhD dissertation · Iowa State University · 2013</p>
+      <h1>A Balanced Approach to the Multi-Class Imbalance Problem</h1>
+      <p class="lede">When one class dwarfs the others, accuracy rewards a model for ignoring the rare ones. This dissertation proposed Class Balance Accuracy, a metric that scores every class by the weaker of its recall and precision. This page explains the idea, lets you try it, and maps where the work has traveled since.</p>
+      <nav class="jump" aria-label="Sections">
+        <a href="#idea">The idea</a>
+        <a href="#try">Try it</a>
+        <a href="#impact">Where it went</a>
+        <a href="#lineage">2013 to today</a>
+        <a href="#explorer">Citing works</a>
+        <a href="#resources">Software and reading</a>
+        <a href="#cite">Cite</a>
+      </nav>
+      <div class="tiles" id="tiles"></div>
+    </header>
+
+    <main>
+      <section id="idea">
+        <h2>The idea</h2>
+        <p class="section-note">Class Balance Accuracy (CBA) reads a confusion matrix class by class. For each class it divides the correct predictions by whichever is larger, the number of true members or the number of predictions made for that class. Then it averages over classes.</p>
+        <div class="two-col">
+          <div class="card">
+            <h3>Definition</h3>
+            <div class="formula">CBA = (1 / k) · Σ<sub>i</sub> c<sub>ii</sub> / max(c<sub>i·</sub>, c<sub>·i</sub>)</div>
+            <p>Here c<sub>ii</sub> counts the correct predictions for class i, c<sub>i·</sub> is the row total (true members), and c<sub>·i</sub> is the column total (predictions). Dividing by the larger total keeps the smaller of recall and precision for that class.</p>
+            <p>Two consequences follow. Every class counts equally, however rare. And CBA can never exceed macro recall or macro precision, so it works as a floor under both (Theorem 3.2.1 of the dissertation).</p>
+          </div>
+          <div class="card">
+            <h3>CBA is not balanced accuracy</h3>
+            <table class="plain">
+              <thead><tr><th>Metric</th><th>Per class it uses</th><th>Sees false alarms</th></tr></thead>
+              <tbody>
+                <tr><td>Accuracy</td><td>nothing per class</td><td>only in total</td></tr>
+                <tr><td>Balanced accuracy</td><td>recall</td><td>no</td></tr>
+                <tr><td>Macro precision</td><td>precision</td><td>yes</td></tr>
+                <tr><td>Class Balance Accuracy</td><td>min(recall, precision)</td><td>yes</td></tr>
+              </tbody>
+            </table>
+            <p>Balanced accuracy is the mean of per-class recall. A model that floods a small class with false alarms can keep a high balanced accuracy. CBA drops, because the precision of that class collapses.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="try">
+        <h2>Try it</h2>
+        <p class="section-note">Edit the confusion matrix or load an example. Rows are the true class and columns are the predicted class. The first two examples come from Figure 3.1 of the dissertation: two models with the same accuracy and very different behavior.</p>
+        <div class="presets" id="presets"></div>
+        <div class="two-col">
+          <div class="card">
+            <table class="matrix" id="matrix" aria-label="Confusion matrix"></table>
+            <table class="plain" id="per-class" style="margin-top:14px"></table>
+          </div>
+          <div class="card">
+            <div class="bars" id="metric-bars"></div>
+            <p id="calc-note" class="chart-sub" style="margin-top:14px"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="impact">
+        <h2>Where it went</h2>
+        <p class="section-note" id="impact-note"></p>
+        <div class="card" style="margin-bottom:16px">
+          <p class="chart-title">Citing works by year</p>
+          <p class="chart-sub">Colored by what the citing work takes from the dissertation. scikit-learn 0.20 shipped <code>balanced_accuracy_score</code> in September 2018, and its user guide has cited the dissertation since.</p>
+          <div class="legend" id="year-legend"></div>
+          <div id="year-chart"></div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <p class="chart-title">By discipline</p>
+            <p class="chart-sub">Select a bar to filter the list below.</p>
+            <div id="discipline-chart"></div>
+          </div>
+          <div class="card">
+            <p class="chart-title">By use</p>
+            <p class="chart-sub">One label per citing work, from the citing passage.</p>
+            <div id="usage-chart"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lineage">
+        <h2>2013 to today</h2>
+        <p class="section-note">The dissertation made five moves that later became common practice in machine learning. The later work listed here follows the same line of thought. It does not necessarily descend from the dissertation.</p>
+        <div class="card lineage">
+          <div class="row">
+            <div><div class="then">A metric built for skewed classes</div><div class="chapter">Class Balance Accuracy, Chapter 3</div></div>
+            <p>Later metrics extend the idea directly: relevance-weighted CBA (Branco et al., 2017), the Class Balance Metrics family (Luque et al., 2019), and the Imbalance Accuracy Metric (Mortaz, 2020). Large validation efforts such as Metrics Reloaded (2024) now treat class imbalance as a first question when choosing a metric.</p>
+          </div>
+          <div class="row">
+            <div><div class="then">Report several metrics, not one</div><div class="chapter">Measure comparisons, Chapters 2 and 3</div></div>
+            <p>The dissertation compares accuracy, balanced accuracy, G-mean, F-score, MCC, and entropy measures side by side and shows where each fails. Model Cards (2019), the case for MCC over F1 and accuracy (2020), and HELM for language models (2022) made multi-metric reporting the norm.</p>
+          </div>
+          <div class="row">
+            <div><div class="then">Optimize the balanced objective</div><div class="chapter">Instance selection by CBA, Chapter 4</div></div>
+            <p>Chapter 4 selects training subsets to maximize CBA instead of accuracy. Deep learning reached the same goal through the loss: focal loss (2017), class-balanced loss and LDAM (2019), and logit adjustment (2021), which targets balanced error directly.</p>
+          </div>
+          <div class="row">
+            <div><div class="then">One expert per class</div><div class="chapter">Class Expert Ensembling, Chapter 5</div></div>
+            <p>Class Expert Ensembling assigns the best model to each class with an assignment program. Long-tailed recognition later built multi-expert models on the same intuition: LFME (2020), RIDE and ACE (2021), SADE (2022), and BalPoE (2023). Mixture-of-experts routing now runs inside large language models such as Mixtral (2024).</p>
+          </div>
+          <div class="row">
+            <div><div class="then">Ship the code</div><div class="chapter">The climbR package, Chapter 6</div></div>
+            <p>The dissertation closed with an open-source R package and a call for a shared repository of imbalance tools. That role is now filled by imbalanced-learn (2017), PyCM (2018), Multi-Imbalance (2019), and reproducibility checklists at the major conferences (2021).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="explorer">
+        <h2>Citing works</h2>
+        <p class="section-note" id="explorer-note"></p>
+        <div class="filters">
+          <input type="search" id="search" placeholder="Search title, author, venue, or domain" aria-label="Search citing works">
+          <select id="filter-discipline" aria-label="Discipline"></select>
+          <select id="filter-usage" aria-label="Use"></select>
+          <select id="sort" aria-label="Sort">
+            <option value="year">Newest first</option>
+            <option value="cited">Most cited first</option>
+            <option value="title">Title A to Z</option>
+          </select>
+          <label class="check"><input type="checkbox" id="filter-values"> Reports CBA values</label>
+          <button type="button" id="reset">Reset</button>
+        </div>
+        <div class="count" id="count" aria-live="polite"></div>
+        <div id="works"></div>
+        <p><button type="button" id="more">Show more</button></p>
+      </section>
+
+      <section id="resources">
+        <h2>Software and reading</h2>
+        <p class="section-note">Tools that implement Class Balance Accuracy, tools for multi-class imbalance in general, and a reading list grouped by theme. Every link was checked in November 2026.</p>
+        <div class="two-col">
+          <div class="card">
+            <h3>Where CBA is implemented</h3>
+            <ul class="resource-list" id="implementations"></ul>
+            <h3 style="margin-top:18px">Imbalance software</h3>
+            <ul class="resource-list" id="software"></ul>
+          </div>
+          <div class="card">
+            <h3>Reading list</h3>
+            <div id="reading"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cite">
+        <h2>Cite</h2>
+        <p class="section-note">If you use Class Balance Accuracy, Class Expert Ensembling, or the dissertation's review of multi-class measures, please cite the dissertation. It is a 2013 Iowa State University PhD thesis. Some reference lists carry it as "IJCV 2010", which is an error copied from a software manual.</p>
+        <pre id="bibtex">@phdthesis{mosley2013balanced,
+  author  = {Mosley, Lawrence},
+  title   = {A Balanced Approach to the Multi-class Imbalance Problem},
+  school  = {Iowa State University},
+  year    = {2013},
+  address = {Ames, Iowa},
+  doi     = {10.31274/etd-180810-3375},
+  url     = {https://doi.org/10.31274/etd-180810-3375}
+}</pre>
+        <p><button type="button" id="copy-bibtex">Copy BibTeX</button></p>
+      </section>
+    </main>
+
+    <footer>
+      <p id="footer-note"></p>
+      <p>Data and code: <a href="https://github.com/Omni-Analytics-Group/a_balanced_approach_to_the_multi-class_imbalance_problem">github.com/Omni-Analytics-Group/a_balanced_approach_to_the_multi-class_imbalance_problem</a></p>
+    </footer>
+  </div>
+  <div id="tooltip" aria-hidden="true"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

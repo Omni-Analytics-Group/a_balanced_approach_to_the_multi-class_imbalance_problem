@@ -1,0 +1,700 @@
+{
+  "software": [
+    {
+      "name": "imbalanced-learn",
+      "url": "https://github.com/scikit-learn-contrib/imbalanced-learn",
+      "language": "Python",
+      "what": "Resampling (SMOTE variants, under-sampling, combos), imbalance-aware ensembles, and metrics (geometric_mean_score, classification_report_imbalanced) compatible with scikit-learn.",
+      "relevance": "Default tool for multi-class resampling; has no CBA.",
+      "maintained": "2026"
+    },
+    {
+      "name": "Multi_Imbalance (MATLAB/Octave)",
+      "url": "https://github.com/chongshengzhang/Multi_Imbalance",
+      "language": "MATLAB/Octave",
+      "what": "Multi-class resampling and ensemble methods (e.g., PIBoost, AdaBoost variants) from the Multi-Imbalance KBS paper.",
+      "relevance": "Companion to Mosley-era multi-class work; does not reference CBA (grep of clone for Mosley, CBA, class balance accuracy: 0 hits).",
+      "maintained": "2019"
+    },
+    {
+      "name": "multi-imbalance (Python)",
+      "url": "https://github.com/damian-horna/multi-imbalance",
+      "language": "Python",
+      "what": "Python port of multi-class imbalance methods (SOUP, MDO, global CS, SPIDER3, etc.).",
+      "relevance": "No CBA reference (grep 0 hits). Low activity.",
+      "maintained": "2022"
+    },
+    {
+      "name": "smote-variants",
+      "url": "https://github.com/analyticalmindsltd/smote_variants",
+      "language": "Python",
+      "what": "About 85 SMOTE-style oversamplers with a multi-class wrapper and model-selection framework.",
+      "relevance": "Large catalog of oversamplers; multi-class via wrapper.",
+      "maintained": "2024"
+    },
+    {
+      "name": "imbalanced-ensemble (imbens)",
+      "url": "https://github.com/ZhiningLiu1998/imbalanced-ensemble",
+      "language": "Python",
+      "what": "Ensemble methods (resampling and reweighting boosting/bagging) with multi-class support and visualization.",
+      "relevance": "Practical multi-class ensembles; paper IMBENS arXiv 2111.12776.",
+      "maintained": "2025"
+    },
+    {
+      "name": "scikit-learn: balanced_accuracy_score and class_weight",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score",
+      "language": "Python",
+      "what": "balanced_accuracy_score (macro recall, optional chance adjustment); class_weight='balanced' on many estimators; also f1/recall with average='macro'.",
+      "relevance": "Closest built-in to CBA, but balanced accuracy differs from CBA (it ignores precision). User guide cites Mosley2013.",
+      "maintained": "2026"
+    },
+    {
+      "name": "TorchMetrics",
+      "url": "https://github.com/Lightning-AI/torchmetrics",
+      "language": "Python (PyTorch)",
+      "what": "MulticlassAccuracy with average='macro' (macro recall), MulticlassRecall, MulticlassF1Score, confusion matrix, MCC.",
+      "relevance": "GPU-friendly per-class metrics; macro recall equals balanced accuracy; no CBA found.",
+      "maintained": "2026"
+    },
+    {
+      "name": "PyCM",
+      "url": "https://github.com/sepandhaghighi/pycm",
+      "language": "Python",
+      "what": "Multiclass confusion matrix library with 100+ class and overall statistics.",
+      "relevance": "Only mainstream package found with a CBA overall statistic (cm.CBA).",
+      "maintained": "2026"
+    },
+    {
+      "name": "themis",
+      "url": "https://github.com/tidymodels/themis",
+      "language": "R",
+      "what": "recipes steps for up/down-sampling and SMOTE-family methods.",
+      "relevance": "R resampling inside tidymodels.",
+      "maintained": "2026"
+    },
+    {
+      "name": "yardstick",
+      "url": "https://github.com/tidymodels/yardstick",
+      "language": "R",
+      "what": "Tidy metrics including bal_accuracy, f_meas, mcc, kap with macro/micro averaging for multi-class.",
+      "relevance": "bal_accuracy is macro recall, not CBA.",
+      "maintained": "2026"
+    },
+    {
+      "name": "UBL",
+      "url": "https://cran.r-project.org/package=UBL",
+      "language": "R",
+      "what": "Utility-based learning resampling for classification and regression.",
+      "relevance": "Relevant to relevance-based evaluation; currently not installable from CRAN.",
+      "maintained": "archived on CRAN, 2025"
+    },
+    {
+      "name": "ROSE",
+      "url": "https://cran.r-project.org/package=ROSE",
+      "language": "R",
+      "what": "Random over-sampling examples; binary focus.",
+      "relevance": "Binary only; stale.",
+      "maintained": "2021"
+    },
+    {
+      "name": "imbalance (R)",
+      "url": "https://cran.r-project.org/package=imbalance",
+      "language": "R",
+      "what": "Preprocessing algorithms (oversampling, filtering) for imbalanced datasets.",
+      "relevance": "Removed from CRAN; GitHub mirror cran/imbalance exists.",
+      "maintained": "archived on CRAN, 2025"
+    },
+    {
+      "name": "mlr3 / mlr3measures",
+      "url": "https://github.com/mlr-org/mlr3measures",
+      "language": "R",
+      "what": "mlr3 framework and measures (bacc, mcc, ce, multiclass auc) plus pipeline-based class balancing in mlr3pipelines.",
+      "relevance": "bacc is multi-class macro recall; no CBA found.",
+      "maintained": "2026"
+    },
+    {
+      "name": "Imbalance.jl",
+      "url": "https://github.com/JuliaAI/Imbalance.jl",
+      "language": "Julia",
+      "what": "Resampling toolbox (SMOTE variants, random methods) with MLJ integration.",
+      "relevance": "Julia option; multi-class handled by ratios dictionary.",
+      "maintained": "2026"
+    },
+    {
+      "name": "LibAUC",
+      "url": "https://github.com/Optimization-AI/LibAUC",
+      "language": "Python (PyTorch)",
+      "what": "Losses and optimizers for AUROC, AUPRC, and related imbalance-robust objectives.",
+      "relevance": "Metric-optimizing training for imbalanced data, mostly binary/multi-label.",
+      "maintained": "2026"
+    },
+    {
+      "name": "Long-Tailed-Recognition.pytorch",
+      "url": "https://github.com/KaihuaTang/Long-Tailed-Recognition.pytorch",
+      "language": "Python (PyTorch)",
+      "what": "Benchmark code for long-tailed classification methods (decoupling, causal norm, re-weighting).",
+      "relevance": "Reference implementations for loss/classifier rebalancing.",
+      "maintained": "2026"
+    },
+    {
+      "name": "Awesome-LongTailed-Learning",
+      "url": "https://github.com/YifanZhang07/Awesome-LongTailed-Learning",
+      "language": "curated list (Python code links)",
+      "what": "Curated list of long-tailed learning papers and code; companion to the TPAMI survey.",
+      "relevance": "Reading-list companion.",
+      "maintained": "2025"
+    },
+    {
+      "name": "imbalanced-dataset-sampler",
+      "url": "https://github.com/ufoym/imbalanced-dataset-sampler",
+      "language": "Python (PyTorch)",
+      "what": "Drop-in PyTorch sampler that rebalances class frequency in DataLoaders.",
+      "relevance": "Simple practical baseline.",
+      "maintained": "2026"
+    },
+    {
+      "name": "Reference code: LDAM-DRW, class-balanced-loss, RIDE, SADE, BalPoE",
+      "url": "https://github.com/kaidic/LDAM-DRW",
+      "language": "Python (PyTorch)",
+      "what": "Authors' repos: kaidic/LDAM-DRW, richardaecn/class-balanced-loss, frank-xwang/RIDE-LongTailRecognition, YifanZhang07/SADE-AgnosticLT, emasa/BalPoE-CalibratedLT.",
+      "relevance": "Reference implementations for papers in the reading list; research code, not maintained as libraries.",
+      "maintained": "2021 to 2025"
+    }
+  ],
+  "reading": [
+    {
+      "title": "Comparing two K-category assignments by a K-category correlation coefficient",
+      "authors": "Gorodkin, J.",
+      "year": 2004,
+      "venue": "Computational Biology and Chemistry",
+      "url": "https://doi.org/10.1016/j.compbiolchem.2004.09.006",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Source of the multi-class MCC (R_K)."
+    },
+    {
+      "title": "A systematic analysis of performance measures for classification tasks",
+      "authors": "Sokolova, M. et al.",
+      "year": 2009,
+      "venue": "Information Processing & Management",
+      "url": "https://doi.org/10.1016/j.ipm.2009.03.002",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Compares measures across binary, multi-class, and multi-label settings by invariance properties."
+    },
+    {
+      "title": "The Balanced Accuracy and Its Posterior Distribution",
+      "authors": "Brodersen, K. H. et al.",
+      "year": 2010,
+      "venue": "20th International Conference on Pattern Recognition (ICPR)",
+      "url": "https://doi.org/10.1109/ICPR.2010.764",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Defines balanced accuracy and gives its Bayesian posterior; the binary base of multi-class macro recall."
+    },
+    {
+      "title": "Relevance-Based Evaluation Metrics for Multi-class Imbalanced Domains",
+      "authors": "Branco, P. et al.",
+      "year": 2017,
+      "venue": "PAKDD 2017, Lecture Notes in Computer Science",
+      "url": "https://doi.org/10.1007/978-3-319-57454-7_54",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Extends relevance-based evaluation to multi-class imbalance."
+    },
+    {
+      "title": "The impact of class imbalance in classification performance metrics based on the binary confusion matrix",
+      "authors": "Luque, A. et al.",
+      "year": 2019,
+      "venue": "Pattern Recognition",
+      "url": "https://doi.org/10.1016/j.patcog.2019.02.023",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Shows which confusion-matrix metrics are biased by prevalence and proposes balanced alternatives."
+    },
+    {
+      "title": "Imbalance accuracy metric for model selection in multi-class imbalance classification problems",
+      "authors": "Mortaz, E.",
+      "year": 2020,
+      "venue": "Knowledge-Based Systems",
+      "url": "https://doi.org/10.1016/j.knosys.2020.106490",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Proposes IAM and compares it with CBA and other multi-class metrics."
+    },
+    {
+      "title": "Metrics for Multi-Class Classification: an Overview",
+      "authors": "Grandini, M. et al.",
+      "year": 2020,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2008.05756",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Practical overview of multi-class accuracy, precision/recall averaging, MCC, and kappa."
+    },
+    {
+      "title": "The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation",
+      "authors": "Chicco, D. et al.",
+      "year": 2020,
+      "venue": "BMC Genomics",
+      "url": "https://doi.org/10.1186/s12864-019-6413-7",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Argues MCC is more informative than F1 and accuracy on imbalanced binary data."
+    },
+    {
+      "title": "Classification assessment methods",
+      "authors": "Tharwat, A.",
+      "year": 2020,
+      "venue": "Applied Computing and Informatics",
+      "url": "https://doi.org/10.1016/j.aci.2018.08.003",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Tutorial-style review of confusion-matrix metrics, ROC, and multi-class extensions."
+    },
+    {
+      "title": "The Matthews correlation coefficient (MCC) is more reliable than balanced accuracy, bookmaker informedness, and markedness in two-class confusion matrix evaluation",
+      "authors": "Chicco, D. et al.",
+      "year": 2021,
+      "venue": "BioData Mining",
+      "url": "https://doi.org/10.1186/s13040-021-00244-z",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Directly compares MCC with balanced accuracy and related two-class metrics."
+    },
+    {
+      "title": "The Matthews correlation coefficient (MCC) should replace the ROC AUC as the standard metric for assessing binary classification",
+      "authors": "Chicco, D. et al.",
+      "year": 2023,
+      "venue": "BioData Mining",
+      "url": "https://doi.org/10.1186/s13040-023-00322-4",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Follow-up argument for MCC over ROC AUC."
+    },
+    {
+      "title": "A Closer Look at Classification Evaluation Metrics and a Critical Reflection of Common Evaluation Practice",
+      "authors": "Opitz, J.",
+      "year": 2024,
+      "venue": "Transactions of the Association for Computational Linguistics",
+      "url": "https://doi.org/10.1162/tacl_a_00675",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Examines accuracy, macro/micro F1, kappa, MCC and their behavior under imbalance."
+    },
+    {
+      "title": "Focal Loss for Dense Object Detection",
+      "authors": "Lin, T.-Y. et al.",
+      "year": 2017,
+      "venue": "IEEE International Conference on Computer Vision (ICCV)",
+      "url": "https://doi.org/10.1109/ICCV.2017.324",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Down-weights easy examples to cope with extreme foreground/background imbalance."
+    },
+    {
+      "title": "Class-Balanced Loss Based on Effective Number of Samples",
+      "authors": "Cui, Y. et al.",
+      "year": 2019,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://doi.org/10.1109/CVPR.2019.00949",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Re-weights by effective number of samples per class."
+    },
+    {
+      "title": "Learning Imbalanced Datasets with Label-Distribution-Aware Margin Loss",
+      "authors": "Cao, K. et al.",
+      "year": 2019,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/1906.07413",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "LDAM loss plus deferred re-weighting (DRW)."
+    },
+    {
+      "title": "Decoupling Representation and Classifier for Long-Tailed Recognition",
+      "authors": "Kang, B. et al.",
+      "year": 2020,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/1910.09217",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Shows instance-balanced representation learning plus classifier re-balancing works well."
+    },
+    {
+      "title": "Balanced Meta-Softmax for Long-Tailed Visual Recognition",
+      "authors": "Ren, J. et al.",
+      "year": 2020,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/2007.10740",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Balanced softmax with a meta sampler."
+    },
+    {
+      "title": "Long-tail learning via logit adjustment",
+      "authors": "Menon, A. K. et al.",
+      "year": 2021,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/2007.07314",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Fisher-consistent logit adjustment that targets balanced error."
+    },
+    {
+      "title": "Balanced Contrastive Learning for Long-Tailed Visual Recognition",
+      "authors": "Zhu, J. et al.",
+      "year": 2022,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://arxiv.org/abs/2207.09052",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Class-averaging and class-complement supervised contrastive losses."
+    },
+    {
+      "title": "Learning Imbalanced Data with Vision Transformers",
+      "authors": "Xu, Z. et al.",
+      "year": 2023,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://arxiv.org/abs/2212.02015",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "LiVT: balanced loss with masked generative pretraining for ViTs."
+    },
+    {
+      "title": "Long-Tail Learning with Foundation Model: Heavy Fine-Tuning Hurts",
+      "authors": "Shi, J.-X. et al.",
+      "year": 2024,
+      "venue": "International Conference on Machine Learning (ICML)",
+      "url": "https://arxiv.org/abs/2309.10019",
+      "theme": "loss re-weighting and logit adjustment",
+      "one_line": "Shows full fine-tuning of foundation models can hurt tail classes; proposes lighter alternatives."
+    },
+    {
+      "title": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
+      "authors": "Ribeiro, M. T. et al.",
+      "year": 2020,
+      "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+      "url": "https://doi.org/10.18653/v1/2020.acl-main.442",
+      "theme": "multi-metric and holistic evaluation",
+      "one_line": "Capability-level test suites in place of one aggregate accuracy."
+    },
+    {
+      "title": "Holistic Evaluation of Language Models",
+      "authors": "Liang, P. et al.",
+      "year": 2022,
+      "venue": "Transactions on Machine Learning Research (2023)",
+      "url": "https://arxiv.org/abs/2211.09110",
+      "theme": "multi-metric and holistic evaluation",
+      "one_line": "Reports many metrics (accuracy, calibration, robustness, fairness, efficiency) across scenarios rather than one score."
+    },
+    {
+      "title": "Metrics reloaded: recommendations for image analysis validation",
+      "authors": "Maier-Hein, L. et al.",
+      "year": 2024,
+      "venue": "Nature Methods",
+      "url": "https://doi.org/10.1038/s41592-023-02151-z",
+      "theme": "multi-metric and holistic evaluation",
+      "one_line": "Problem-driven framework for choosing validation metrics, with explicit treatment of class imbalance."
+    },
+    {
+      "title": "ROSE: a Package for Binary Imbalanced Learning",
+      "authors": "Lunardon, N. et al.",
+      "year": 2014,
+      "venue": "The R Journal",
+      "url": "https://doi.org/10.32614/RJ-2014-008",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for the R package ROSE."
+    },
+    {
+      "title": "Imbalanced-learn: A Python Toolbox to Tackle the Curse of Imbalanced Datasets in Machine Learning",
+      "authors": "Lemaitre, G. et al.",
+      "year": 2017,
+      "venue": "Journal of Machine Learning Research 18(17)",
+      "url": "https://jmlr.org/papers/v18/16-365.html",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for imbalanced-learn."
+    },
+    {
+      "title": "PyCM: Multiclass confusion matrix library in Python",
+      "authors": "Haghighi, S. et al.",
+      "year": 2018,
+      "venue": "Journal of Open Source Software",
+      "url": "https://doi.org/10.21105/joss.00729",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for PyCM, which exposes CBA."
+    },
+    {
+      "title": "Multi-Imbalance: An open-source software for multi-class imbalance learning",
+      "authors": "Zhang, C. et al.",
+      "year": 2019,
+      "venue": "Knowledge-Based Systems",
+      "url": "https://doi.org/10.1016/j.knosys.2019.03.001",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for the MATLAB/Octave Multi_Imbalance toolbox."
+    },
+    {
+      "title": "smote-variants: a Python Implementation of 85 Minority Oversampling Techniques",
+      "authors": "Kovacs, G.",
+      "year": 2019,
+      "venue": "Neurocomputing",
+      "url": "https://doi.org/10.1016/j.neucom.2019.06.100",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for smote-variants."
+    },
+    {
+      "title": "Improving Reproducibility in Machine Learning Research",
+      "authors": "Pineau, J. et al.",
+      "year": 2021,
+      "venue": "Journal of Machine Learning Research 22(164)",
+      "url": "https://jmlr.org/papers/v22/20-303.html",
+      "theme": "open-source and reproducibility",
+      "one_line": "Report on the NeurIPS 2019 reproducibility program and checklist."
+    },
+    {
+      "title": "IMBENS: Ensemble Class-imbalanced Learning in Python",
+      "authors": "Liu, Z. et al.",
+      "year": 2021,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2111.12776",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for imbalanced-ensemble."
+    },
+    {
+      "title": "Imbalance: A comprehensive multi-interface Julia toolbox to address class imbalance",
+      "authors": "Wisam, E. et al.",
+      "year": 2024,
+      "venue": "Journal of Open Source Software",
+      "url": "https://doi.org/10.21105/joss.06310",
+      "theme": "open-source and reproducibility",
+      "one_line": "Julia resampling toolbox (Imbalance.jl) with MLJ integration."
+    },
+    {
+      "title": "Adaptive Mixtures of Local Experts",
+      "authors": "Jacobs, R. A. et al.",
+      "year": 1991,
+      "venue": "Neural Computation",
+      "url": "https://doi.org/10.1162/neco.1991.3.1.79",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Original mixture-of-experts with a gating network."
+    },
+    {
+      "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+      "authors": "Shazeer, N. et al.",
+      "year": 2017,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/1701.06538",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Sparse top-k gating makes very large MoE layers practical."
+    },
+    {
+      "title": "Learning From Multiple Experts: Self-paced Knowledge Distillation for Long-tailed Classification",
+      "authors": "Xiang, L. et al.",
+      "year": 2020,
+      "venue": "European Conference on Computer Vision (ECCV)",
+      "url": "https://arxiv.org/abs/2001.01536",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Trains experts on class subsets and distills them into one student."
+    },
+    {
+      "title": "Long-tailed Recognition by Routing Diverse Distribution-Aware Experts",
+      "authors": "Wang, X. et al.",
+      "year": 2021,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/2010.01809",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "RIDE: multiple experts with distribution-aware diversity loss and routing."
+    },
+    {
+      "title": "ACE: Ally Complementary Experts for Solving Long-Tailed Recognition in One-Shot",
+      "authors": "Cai, J. et al.",
+      "year": 2021,
+      "venue": "IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "url": "https://arxiv.org/abs/2108.02385",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Experts specialized by class group with complementary distribution-aware losses."
+    },
+    {
+      "title": "Self-Supervised Aggregation of Diverse Experts for Test-Agnostic Long-Tailed Recognition",
+      "authors": "Zhang, Y. et al.",
+      "year": 2022,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/2107.09249",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "SADE: experts for forward, uniform, and backward label distributions, aggregated at test time."
+    },
+    {
+      "title": "Nested Collaborative Learning for Long-Tailed Visual Recognition",
+      "authors": "Li, J. et al.",
+      "year": 2022,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://arxiv.org/abs/2203.15359",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Multi-expert collaborative training with hard-category mining."
+    },
+    {
+      "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+      "authors": "Fedus, W. et al.",
+      "year": 2022,
+      "venue": "Journal of Machine Learning Research 23(120)",
+      "url": "https://jmlr.org/papers/v23/21-0998.html",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Single-expert routing that simplifies sparse MoE training."
+    },
+    {
+      "title": "Balanced Product of Calibrated Experts for Long-Tailed Recognition",
+      "authors": "Sanchez Aimar, E. et al.",
+      "year": 2023,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://arxiv.org/abs/2206.05260",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "BalPoE combines calibrated experts to be Fisher-consistent for balanced error."
+    },
+    {
+      "title": "Mixtral of Experts",
+      "authors": "Jiang, A. Q. et al.",
+      "year": 2024,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2401.04088",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Open-weights sparse MoE language model."
+    },
+    {
+      "title": "A Survey on Mixture of Experts in Large Language Models",
+      "authors": "Cai, W. et al.",
+      "year": 2025,
+      "venue": "IEEE Transactions on Knowledge and Data Engineering",
+      "url": "https://doi.org/10.1109/TKDE.2025.3554028",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Recent survey of MoE design and training."
+    },
+    {
+      "title": "The class imbalance problem: A systematic study",
+      "authors": "Japkowicz, N. et al.",
+      "year": 2002,
+      "venue": "Intelligent Data Analysis",
+      "url": "https://doi.org/10.3233/IDA-2002-6504",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Early controlled study of how imbalance, complexity, and training size interact across classifiers."
+    },
+    {
+      "title": "Learning from Imbalanced Data",
+      "authors": "He, H. et al.",
+      "year": 2009,
+      "venue": "IEEE Transactions on Knowledge and Data Engineering",
+      "url": "https://doi.org/10.1109/TKDE.2008.239",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "The canonical survey of imbalanced learning: sampling, cost-sensitive methods, and assessment metrics."
+    },
+    {
+      "title": "Learning from imbalanced data: open challenges and future directions",
+      "authors": "Krawczyk, B.",
+      "year": 2016,
+      "venue": "Progress in Artificial Intelligence",
+      "url": "https://doi.org/10.1007/s13748-016-0094-0",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Names open problems including multi-class imbalance, evaluation, and drifting streams."
+    },
+    {
+      "title": "A Survey of Predictive Modeling on Imbalanced Domains",
+      "authors": "Branco, P. et al.",
+      "year": 2016,
+      "venue": "ACM Computing Surveys",
+      "url": "https://doi.org/10.1145/2907070",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Covers classification and regression under imbalance, including relevance-based evaluation."
+    },
+    {
+      "title": "Learning from Imbalanced Data Sets",
+      "authors": "Fernandez, A. et al.",
+      "year": 2018,
+      "venue": "Springer (book)",
+      "url": "https://doi.org/10.1007/978-3-319-98074-4",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Book-length treatment of preprocessing, cost-sensitive learning, ensembles, and metrics."
+    },
+    {
+      "title": "Survey on deep learning with class imbalance",
+      "authors": "Johnson, J. M. et al.",
+      "year": 2019,
+      "venue": "Journal of Big Data",
+      "url": "https://doi.org/10.1186/s40537-019-0192-5",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Reviews data-, algorithm-level, and hybrid methods for deep networks under imbalance."
+    },
+    {
+      "title": "A Survey on Long-Tailed Visual Recognition",
+      "authors": "Yang, L. et al.",
+      "year": 2022,
+      "venue": "International Journal of Computer Vision",
+      "url": "https://doi.org/10.1007/s11263-022-01622-8",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Second major long-tailed vision survey with its own taxonomy and benchmark comparison."
+    },
+    {
+      "title": "Deep Long-Tailed Learning: A Survey",
+      "authors": "Zhang, Y. et al.",
+      "year": 2023,
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "url": "https://doi.org/10.1109/TPAMI.2023.3268118",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Taxonomy of class re-balancing, information augmentation, and module improvement for long-tailed deep learning."
+    },
+    {
+      "title": "Class overlap in imbalanced learning: A data-level perspective and comprehensive review",
+      "authors": "Wang, et al.",
+      "year": 2026,
+      "venue": "Journal of King Saud University Computer and Information Sciences",
+      "url": "https://doi.org/10.1007/s44443-026-00547-3",
+      "theme": "surveys of imbalanced and long-tailed learning",
+      "one_line": "Recent review whose multi-class metrics section describes CBA and cites Mosley."
+    },
+    {
+      "title": "Multi-Class Imbalanced Classification",
+      "authors": "Brownlee, J.",
+      "year": 2021,
+      "venue": "Machine Learning Mastery (blog)",
+      "url": "https://machinelearningmastery.com/multi-class-imbalanced-classification/",
+      "theme": "tutorials and practical guides",
+      "one_line": "Practical walkthrough of multi-class imbalance with sklearn."
+    },
+    {
+      "title": "To SMOTE, or not to SMOTE?",
+      "authors": "Elor, Y. et al.",
+      "year": 2022,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2201.08528",
+      "theme": "tutorials and practical guides",
+      "one_line": "Empirical caution that SMOTE often adds little over strong classifiers with tuned thresholds."
+    },
+    {
+      "title": "Metrics and scoring: balanced accuracy (scikit-learn user guide)",
+      "authors": "scikit-learn developers",
+      "year": 2026,
+      "venue": "scikit-learn 1.9.1 documentation",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score",
+      "theme": "tutorials and practical guides",
+      "one_line": "Defines multi-class balanced accuracy as macro recall; cites Mosley (with wrong venue/year)."
+    },
+    {
+      "title": "Datasets: Class-imbalanced datasets (Machine Learning Crash Course)",
+      "authors": "Google for Developers",
+      "year": 2026,
+      "venue": "Google Machine Learning Crash Course",
+      "url": "https://developers.google.com/machine-learning/crash-course/overfitting/imbalanced-datasets",
+      "theme": "tutorials and practical guides",
+      "one_line": "Short intro to imbalanced data, downsampling and upweighting."
+    }
+  ],
+  "cba_implementations": [
+    {
+      "name": "PyCM",
+      "url": "https://www.pycm.io/doc/index.html#cba",
+      "language": "Python",
+      "where": "ConfusionMatrix.CBA",
+      "notes": "A confusion-matrix library with more than 100 statistics. CBA is available as ConfusionMatrix.CBA and has been in the library since version 1.4. The documentation cites the dissertation."
+    },
+    {
+      "name": "pxtextmining",
+      "url": "https://github.com/CDU-data-science-team/pxtextmining/blob/0.3.0/pxtextmining/helpers/metrics.py",
+      "language": "Python",
+      "where": "class_balance_accuracy_score",
+      "notes": "A patient-feedback text classification project. Release 0.3.0 has a class_balance_accuracy_score function that cites the dissertation by page. Later releases dropped it."
+    },
+    {
+      "name": "pxtextmineR",
+      "url": "https://github.com/nhs-r-community/pxtextmineR",
+      "language": "R",
+      "where": "class_balance_accuracy_score_r",
+      "notes": "An R wrapper around the pxtextmining function. It calls the Python code through reticulate, so it is not a separate implementation."
+    },
+    {
+      "name": "scikit-learn user guide",
+      "url": "https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score",
+      "language": "documentation",
+      "where": "Balanced accuracy score section",
+      "notes": "Describes class balanced accuracy and cites the dissertation, but ships no function for it. balanced_accuracy_score computes macro recall."
+    }
+  ]
+}
