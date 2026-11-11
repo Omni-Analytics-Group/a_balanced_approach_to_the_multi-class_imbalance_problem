@@ -142,7 +142,7 @@ Google Scholar listed 167 citations on November 10, 2026. Merging that list with
 
 In September 2018, scikit-learn 0.20 added `balanced_accuracy_score`. The [user guide section](https://scikit-learn.org/stable/modules/model_evaluation.html#balanced-accuracy-score) that documents it names the dissertation twice: once among the sources for its multi-class definition, and once to describe "class balanced accuracy" as the average, over classes, of the minimum of precision and recall. Citations rose from 15 in the five years before 2019 to 166 since.
 
-The guide lists the reference as "IJCV 2010". That is an error. The work is a 2013 Iowa State University dissertation, and the mistake has been copied into several papers. A fix to the scikit-learn documentation would be a welcome contribution.
+The guide lists the reference as "IJCV 2010". That is an error. The work is a 2013 Iowa State University dissertation, and the mistake has been copied into several papers. A correction was proposed to scikit-learn in November 2026 ([scikit-learn#35378](https://github.com/scikit-learn/scikit-learn/pull/35378)).
 
 ### What citing works take from it
 
