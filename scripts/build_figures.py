@@ -459,27 +459,27 @@ LINEAGE = [
     (
         "A metric built for skewed classes",
         "Class Balance Accuracy (Ch. 3)",
-        [(2017, "CBA-phi"), (2019, "Class Balance\nMetrics"), (2020, "IAM"), (2024, "Metrics\nReloaded")],
+        [(2017, "CBA-phi"), (2019, "Class Balance\nMetrics"), (2020, "IAM, worst-\ngroup accuracy"), (2023, "Long-tail\nknowledge in LLMs"), (2024, "Metrics\nReloaded")],
     ),
     (
         "Report several metrics, not one",
         "Measure comparisons (Ch. 2, 3)",
-        [(2019, "Model Cards"), (2020, "MCC over F1\nand accuracy"), (2022, "HELM")],
+        [(2019, "Model Cards,\nGLUE"), (2020, "MCC over F1\nand accuracy"), (2021, "Benchmark\nLottery"), (2022, "HELM,\nBIG-bench")],
     ),
     (
         "Optimize the balanced objective",
         "Instance selection by CBA (Ch. 4)",
-        [(2017, "Focal loss"), (2019, "Class-balanced\nloss, LDAM"), (2021, "Logit\nadjustment")],
+        [(2017, "Focal loss"), (2019, "Class-balanced\nloss, LDAM"), (2021, "Logit\nadjustment"), (2022, "Data\npruning"), (2025, "DRoP")],
     ),
     (
         "One expert per class",
         "Class Expert Ensembling (Ch. 5)",
-        [(2020, "LFME"), (2021, "RIDE, ACE"), (2022, "SADE"), (2023, "BalPoE"), (2024, "Mixtral")],
+        [(2020, "LFME"), (2021, "RIDE, ACE"), (2022, "SADE"), (2023, "BalPoE,\nFrugalGPT"), (2024, "Mixtral"), (2025, "RouteLLM")],
     ),
     (
         "Ship the code",
         "climbR package (Ch. 6)",
-        [(2017, "imbalanced-\nlearn"), (2018, "PyCM,\nscikit-learn 0.20"), (2019, "Multi-\nImbalance"), (2021, "Reproducibility\nchecklists")],
+        [(2017, "imbalanced-\nlearn"), (2018, "PyCM,\nscikit-learn 0.20"), (2019, "Multi-\nImbalance"), (2021, "Reproducibility\nchecklists"), (2022, "Hugging Face\nEvaluate"), (2024, "lm-eval\nharness")],
     ),
 ]
 

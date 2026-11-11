@@ -163,6 +163,33 @@
   ],
   "reading": [
     {
+      "title": "Deep Learning on a Data Diet: Finding Important Examples Early in Training",
+      "authors": "Paul, M. et al.",
+      "year": 2021,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/2107.07075",
+      "theme": "data selection and pruning",
+      "one_line": "Scores computed early in training pick out the examples that matter, so large fractions of the training set can be pruned without losing test accuracy."
+    },
+    {
+      "title": "Beyond neural scaling laws: beating power law scaling via data pruning",
+      "authors": "Sorscher, B. et al.",
+      "year": 2022,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/2206.14486",
+      "theme": "data selection and pruning",
+      "one_line": "Shows that pruning with a good ranking of examples can beat the power-law scaling of error with dataset size, and benchmarks ten pruning metrics on ImageNet."
+    },
+    {
+      "title": "DRoP: Distributionally Robust Data Pruning",
+      "authors": "Vysogorets, A. et al.",
+      "year": 2025,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/2404.05579",
+      "theme": "data selection and pruning",
+      "one_line": "Finds that existing pruning algorithms can produce highly biased classifiers and sets class-wise pruning ratios to protect worst-class performance."
+    },
+    {
       "title": "Comparing two K-category assignments by a K-category correlation coefficient",
       "authors": "Gorodkin, J.",
       "year": 2004,
@@ -244,6 +271,15 @@
       "one_line": "Tutorial-style review of confusion-matrix metrics, ROC, and multi-class extensions."
     },
     {
+      "title": "Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization",
+      "authors": "Sagawa, S. et al.",
+      "year": 2020,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/1911.08731",
+      "theme": "evaluation metrics under imbalance",
+      "one_line": "Group DRO: models that are accurate on average can fail on atypical groups, so training and reporting target worst-group accuracy."
+    },
+    {
       "title": "The Matthews correlation coefficient (MCC) is more reliable than balanced accuracy, bookmaker informedness, and markedness in two-class confusion matrix evaluation",
       "authors": "Chicco, D. et al.",
       "year": 2021,
@@ -269,6 +305,42 @@
       "url": "https://doi.org/10.1162/tacl_a_00675",
       "theme": "evaluation metrics under imbalance",
       "one_line": "Examines accuracy, macro/micro F1, kappa, MCC and their behavior under imbalance."
+    },
+    {
+      "title": "Calibrate Before Use: Improving Few-Shot Performance of Language Models",
+      "authors": "Zhao, T. Z. et al.",
+      "year": 2021,
+      "venue": "International Conference on Machine Learning (ICML)",
+      "url": "https://arxiv.org/abs/2102.09690",
+      "theme": "long tails in foundation models",
+      "one_line": "Few-shot GPT-3 prompts are biased toward certain answers, including those common in the pre-training data; contextual calibration removes much of the bias."
+    },
+    {
+      "title": "Large Language Models Struggle to Learn Long-Tail Knowledge",
+      "authors": "Kandpal, N. et al.",
+      "year": 2023,
+      "venue": "International Conference on Machine Learning (ICML)",
+      "url": "https://arxiv.org/abs/2211.08411",
+      "theme": "long tails in foundation models",
+      "one_line": "A language model's accuracy on a factual question tracks how many pre-training documents are relevant to it."
+    },
+    {
+      "title": "The Neglected Tails in Vision-Language Models",
+      "authors": "Parashar, S. et al.",
+      "year": 2024,
+      "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "url": "https://arxiv.org/abs/2401.12425",
+      "theme": "long tails in foundation models",
+      "one_line": "Measures the long-tailed concept distribution in vision-language pre-training data and the imbalanced zero-shot accuracy that follows from it."
+    },
+    {
+      "title": "No \"Zero-Shot\" Without Exponential Data: Pretraining Concept Frequency Determines Multimodal Model Performance",
+      "authors": "Udandarao, V. et al.",
+      "year": 2024,
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "url": "https://arxiv.org/abs/2404.04125",
+      "theme": "long tails in foundation models",
+      "one_line": "Across 34 multimodal models, linear gains in zero-shot performance on a concept take exponentially more pre-training data for it."
     },
     {
       "title": "Focal Loss for Dense Object Detection",
@@ -352,13 +424,40 @@
       "one_line": "Shows full fine-tuning of foundation models can hurt tail classes; proposes lighter alternatives."
     },
     {
+      "title": "GLUE: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding",
+      "authors": "Wang, A. et al.",
+      "year": 2019,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/1804.07461",
+      "theme": "multi-metric and multi-benchmark evaluation",
+      "one_line": "Scores a model across a range of language understanding tasks instead of one, with a diagnostic suite for finer analysis."
+    },
+    {
       "title": "Beyond Accuracy: Behavioral Testing of NLP Models with CheckList",
       "authors": "Ribeiro, M. T. et al.",
       "year": 2020,
       "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
       "url": "https://doi.org/10.18653/v1/2020.acl-main.442",
-      "theme": "multi-metric and holistic evaluation",
+      "theme": "multi-metric and multi-benchmark evaluation",
       "one_line": "Capability-level test suites in place of one aggregate accuracy."
+    },
+    {
+      "title": "The Benchmark Lottery",
+      "authors": "Dehghani, M. et al.",
+      "year": 2021,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2107.07002",
+      "theme": "multi-metric and multi-benchmark evaluation",
+      "one_line": "Shows that the relative performance of methods can change significantly with the choice of benchmark tasks."
+    },
+    {
+      "title": "AI and the Everything in the Whole Wide World Benchmark",
+      "authors": "Raji, I. D. et al.",
+      "year": 2021,
+      "venue": "NeurIPS Datasets and Benchmarks Track",
+      "url": "https://arxiv.org/abs/2111.15366",
+      "theme": "multi-metric and multi-benchmark evaluation",
+      "one_line": "Position paper on the construct validity of treating a few benchmarks as general measures of progress."
     },
     {
       "title": "Holistic Evaluation of Language Models",
@@ -366,8 +465,26 @@
       "year": 2022,
       "venue": "Transactions on Machine Learning Research (2023)",
       "url": "https://arxiv.org/abs/2211.09110",
-      "theme": "multi-metric and holistic evaluation",
+      "theme": "multi-metric and multi-benchmark evaluation",
       "one_line": "Reports many metrics (accuracy, calibration, robustness, fairness, efficiency) across scenarios rather than one score."
+    },
+    {
+      "title": "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models",
+      "authors": "Srivastava, A. et al.",
+      "year": 2022,
+      "venue": "Transactions on Machine Learning Research",
+      "url": "https://arxiv.org/abs/2206.04615",
+      "theme": "multi-metric and multi-benchmark evaluation",
+      "one_line": "BIG-bench: 204 tasks contributed by 450 authors to probe language models from many directions at once."
+    },
+    {
+      "title": "Rethink reporting of evaluation results in AI",
+      "authors": "Burnell, R. et al.",
+      "year": 2023,
+      "venue": "Science 380(6641)",
+      "url": "https://doi.org/10.1126/science.adf6369",
+      "theme": "multi-metric and multi-benchmark evaluation",
+      "one_line": "Argues that aggregate metrics and unreleased results limit what can be learned about an AI system."
     },
     {
       "title": "Metrics reloaded: recommendations for image analysis validation",
@@ -375,7 +492,7 @@
       "year": 2024,
       "venue": "Nature Methods",
       "url": "https://doi.org/10.1038/s41592-023-02151-z",
-      "theme": "multi-metric and holistic evaluation",
+      "theme": "multi-metric and multi-benchmark evaluation",
       "one_line": "Problem-driven framework for choosing validation metrics, with explicit treatment of class imbalance."
     },
     {
@@ -442,6 +559,15 @@
       "one_line": "Software paper for imbalanced-ensemble."
     },
     {
+      "title": "Evaluate & Evaluation on the Hub: Better Best Practices for Data and Model Measurements",
+      "authors": "von Werra, L. et al.",
+      "year": 2022,
+      "venue": "Conference on Empirical Methods in Natural Language Processing: System Demonstrations",
+      "url": "https://doi.org/10.18653/v1/2022.emnlp-demos.13",
+      "theme": "open-source and reproducibility",
+      "one_line": "Software paper for Hugging Face Evaluate, a shared library of documented metric implementations."
+    },
+    {
       "title": "Imbalance: A comprehensive multi-interface Julia toolbox to address class imbalance",
       "authors": "Wisam, E. et al.",
       "year": 2024,
@@ -449,6 +575,15 @@
       "url": "https://doi.org/10.21105/joss.06310",
       "theme": "open-source and reproducibility",
       "one_line": "Julia resampling toolbox (Imbalance.jl) with MLJ integration."
+    },
+    {
+      "title": "Lessons from the Trenches on Reproducible Evaluation of Language Models",
+      "authors": "Biderman, S. et al.",
+      "year": 2024,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2405.14782",
+      "theme": "open-source and reproducibility",
+      "one_line": "Guidance on reproducible LLM evaluation from the developers of the lm-eval harness."
     },
     {
       "title": "Adaptive Mixtures of Local Experts",
@@ -532,6 +667,24 @@
       "one_line": "BalPoE combines calibrated experts to be Fisher-consistent for balanced error."
     },
     {
+      "title": "Large Language Model Routing with Benchmark Datasets",
+      "authors": "Shnitzer, T. et al.",
+      "year": 2023,
+      "venue": "arXiv preprint",
+      "url": "https://arxiv.org/abs/2309.15789",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "No single LLM is best on every task, so benchmark results are reused to learn a router that picks a model for each new task."
+    },
+    {
+      "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance",
+      "authors": "Chen, L. et al.",
+      "year": 2023,
+      "venue": "Transactions on Machine Learning Research (2024)",
+      "url": "https://arxiv.org/abs/2305.05176",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "An LLM cascade that learns which combinations of models to use for which queries."
+    },
+    {
       "title": "Mixtral of Experts",
       "authors": "Jiang, A. Q. et al.",
       "year": 2024,
@@ -548,6 +701,15 @@
       "url": "https://doi.org/10.1109/TKDE.2025.3554028",
       "theme": "per-class experts and mixture of experts",
       "one_line": "Recent survey of MoE design and training."
+    },
+    {
+      "title": "RouteLLM: Learning to Route LLMs with Preference Data",
+      "authors": "Ong, I. et al.",
+      "year": 2025,
+      "venue": "International Conference on Learning Representations (ICLR)",
+      "url": "https://arxiv.org/abs/2406.18665",
+      "theme": "per-class experts and mixture of experts",
+      "one_line": "Routers that choose between a stronger and a weaker LLM for each query, trained on human preference data."
     },
     {
       "title": "The class imbalance problem: A systematic study",

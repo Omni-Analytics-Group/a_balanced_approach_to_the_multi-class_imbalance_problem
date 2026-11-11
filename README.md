@@ -4,7 +4,7 @@
 
 When one class dwarfs the others, accuracy rewards a model for ignoring the rare ones. This dissertation proposed **Class Balance Accuracy (CBA)**, a metric that scores every class by the weaker of its recall and precision, and then used it to select training data and to build ensembles of per-class experts.
 
-This repository is a home for that work and a guide to the field around it: what the metric is, how to compute it, who has used it, and how its ideas connect to imbalance research today.
+This repository is a home for that work and a guide to the field around it: what the metric is, how to compute it, who has used it, and how its ideas connect to imbalance research, deep learning, and large language models today.
 
 **[Read the dissertation](https://doi.org/10.31274/etd-180810-3375)** · **[Explore the interactive site](https://omni-analytics-group.github.io/a_balanced_approach_to_the_multi-class_imbalance_problem/)** · **[Browse all 182 citing works](data/CITING_WORKS.md)** · **[How to cite](#how-to-cite)**
 
@@ -224,7 +224,7 @@ The dissertation made five moves that later became common practice. The later wo
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="figures/idea-lineage-dark.png">
-  <img src="figures/idea-lineage-light.png" alt="Timeline with five rows, one per idea in the dissertation, each starting in 2013 and followed by later work on the same idea through 2024.">
+  <img src="figures/idea-lineage-light.png" alt="Timeline with five rows, one per idea in the dissertation, each starting in 2013 and followed by later work on the same idea through 2025.">
 </picture>
 
 | In the dissertation (2013) | The same idea today |
@@ -234,6 +234,22 @@ The dissertation made five moves that later became common practice. The later wo
 | **Optimize the balanced objective.** Chapter 4 selects training data to maximize CBA instead of accuracy. | Deep learning moved the same goal into the loss: [focal loss](https://doi.org/10.1109/ICCV.2017.324) (2017), [class-balanced loss](https://doi.org/10.1109/CVPR.2019.00949) and [LDAM](https://arxiv.org/abs/1906.07413) (2019), and [logit adjustment](https://arxiv.org/abs/2007.07314) (2021), which is consistent for balanced error. [Decoupled training](https://arxiv.org/abs/1910.09217) (2020) rebalances only the classifier. |
 | **One expert per class.** Class Expert Ensembling assigns the best model to each class and lets it claim its observations. | Mixture of experts dates to [Jacobs et al.](https://doi.org/10.1162/neco.1991.3.1.79) (1991). Long-tailed recognition rebuilt it around class frequency: [LFME](https://arxiv.org/abs/2001.01536) (2020), [RIDE](https://arxiv.org/abs/2010.01809) and [ACE](https://arxiv.org/abs/2108.02385) (2021), [SADE](https://arxiv.org/abs/2107.09249) (2022), and [BalPoE](https://arxiv.org/abs/2206.05260) (2023) train experts for head and tail classes and combine them. Sparse expert routing now runs inside large language models such as [Mixtral](https://arxiv.org/abs/2401.04088) (2024). |
 | **Ship the code.** The dissertation ends with the climbR package and a call for a shared repository of imbalance tools. | [imbalanced-learn](https://jmlr.org/papers/v18/16-365.html) (2017) became that repository for Python. [PyCM](https://doi.org/10.21105/joss.00729) (2018) implements CBA. [Multi-Imbalance](https://doi.org/10.1016/j.knosys.2019.03.001) (2019) names climbR among the tools that came before it. Code release and [reproducibility checklists](https://jmlr.org/papers/v22/20-303.html) (2021) are now expected at the major conferences. |
+
+### The same questions in deep learning and large language models
+
+The dissertation worked with support vector machines, classification trees, and UCI data sets. The field has since moved to deep networks and to language models trained on web-scale text, and the questions moved with it. Classes became tasks, training sets became pre-training corpora, and ensembles became routers.
+
+**Several metrics became several benchmarks.** Chapter 2 warns that "information loss is inevitable" when a confusion matrix is reduced to a single number. Chapter 3 then ranks six models on the Audio data set by seven metrics, and the seven metrics pick four different winners (Table 3.14). Replace classes with tasks and that is the argument for benchmark suites. [GLUE](https://arxiv.org/abs/1804.07461) (2019) scored language models on nine tasks at once, [BIG-bench](https://arxiv.org/abs/2206.04615) (2022) on 204, and [HELM](https://arxiv.org/abs/2211.09110) (2022) on seven metrics per scenario. [The Benchmark Lottery](https://arxiv.org/abs/2107.07002) (2021) showed that the ranking of methods can change with the choice of benchmark tasks, the way the ranking of classifiers changes with the choice of metric. [Burnell et al.](https://doi.org/10.1126/science.adf6369) (2023) argue in *Science* that aggregate metrics limit what can be learned about an AI system. An average over a suite has the weakness of accuracy over classes: strong results on the common cases cover for failure on the rare ones.
+
+**The long tail moved into the pre-training data.** In 2013 the skew sat in the labels of a training set. Foundation models learn from web-scale corpora in which concepts follow a long tail, and the result is the one the dissertation describes: good numbers overall and poor ones on what is rare. [Kandpal et al.](https://arxiv.org/abs/2211.08411) (2023) show that a language model's accuracy on a factual question tracks how many pre-training documents are relevant to it. [Parashar et al.](https://arxiv.org/abs/2401.12425) (2024) report that CLIP reaches 60 to 80% zero-shot accuracy on ImageNet and falls below 10% on more than ten rare concepts. [Udandarao et al.](https://arxiv.org/abs/2404.04125) (2024) find, across 34 multimodal models, that linear gains on a concept take exponentially more pre-training data for it. The bias shows up in prompting too: [Zhao et al.](https://arxiv.org/abs/2102.09690) (2021) show that few-shot GPT-3 leans toward certain answers, such as those common in its pre-training data. Robustness research responded with the conservative instinct behind CBA, and [group DRO](https://arxiv.org/abs/1911.08731) (2020) reports worst-group accuracy next to the average.
+
+**Instance selection became data pruning.** Chapter 4 starts from data that has outgrown the tools and looks for a training subset that yields a model as good or better. It then observes that choosing the subset by accuracy neglects the minority classes, and chooses by CBA instead. Deep learning took the same two steps. Data pruning ([Paul et al.](https://arxiv.org/abs/2107.07075), 2021; [Sorscher et al.](https://arxiv.org/abs/2206.14486), 2022) discards training examples to cut the cost of training. [DRoP](https://arxiv.org/abs/2404.05579) (2025) then found that existing pruning algorithms can produce highly biased classifiers, and set pruning ratios class by class to protect the worst-performing class.
+
+**Class experts became routers.** Class Expert Ensembling rests on the observation that "some models may outperform other model predictions for certain classes". It picks one expert per class with an assignment program and lets the experts predict in turn. [Shnitzer et al.](https://arxiv.org/abs/2309.15789) (2023) start from the same observation about language models, that "no single model typically achieves the best accuracy in all tasks and use cases", and reuse benchmark results to learn a router that picks a model for each new task. [FrugalGPT](https://arxiv.org/abs/2305.05176) (2023) learns which models in a cascade to use for which queries, and [RouteLLM](https://arxiv.org/abs/2406.18665) (2025) chooses between a stronger and a weaker model for each one. Inside a single network, the router in [Mixtral](https://arxiv.org/abs/2401.04088) (2024) selects two of eight experts for every token at every layer, and [DeepSeek-V3](https://arxiv.org/abs/2412.19437) (2024) activates 37 billion of its 671 billion parameters per token.
+
+**A shared home for tools became the hub.** The conclusion hopes for a "centralized repository" of imbalance routines and asks for "a consensus driven framework that researchers can use to compare and contrast results". Evaluation tooling has moved that way. [Hugging Face Evaluate](https://doi.org/10.18653/v1/2022.emnlp-demos.13) (2022) is a shared library of documented metric implementations, and the [lm-eval harness](https://arxiv.org/abs/2405.14782) (2024) gives language models a common evaluation framework.
+
+None of the papers in this subsection is among the 182 citing works. The parallel is in the problem, which has not changed: one number hides the rare cases, and the rare cases are where models fail.
 
 The closing chapter left two questions for future work that none of the citing works read for this page takes up: the asymptotic behavior of CBA, and how Class Expert Ensembling compares with class decomposition methods such as one-versus-one.
 
@@ -275,7 +291,7 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 
 ## Reading list
 
-56 references, checked in November 2026, grouped by theme.
+74 references, checked in November 2026, grouped by theme.
 
 <details>
 <summary><strong>Surveys of imbalanced and long-tailed learning</strong> (9)</summary>
@@ -293,7 +309,7 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 </details>
 
 <details>
-<summary><strong>Evaluation metrics under imbalance</strong> (12)</summary>
+<summary><strong>Evaluation metrics under imbalance</strong> (13)</summary>
 
 - Gorodkin, J. (2004). [Comparing two K-category assignments by a K-category correlation coefficient](https://doi.org/10.1016/j.compbiolchem.2004.09.006). Computational Biology and Chemistry. Source of the multi-class MCC (R_K).
 - Sokolova, M. et al. (2009). [A systematic analysis of performance measures for classification tasks](https://doi.org/10.1016/j.ipm.2009.03.002). Information Processing & Management. Compares measures across binary, multi-class, and multi-label settings by invariance properties.
@@ -304,6 +320,7 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 - Grandini, M. et al. (2020). [Metrics for Multi-Class Classification: an Overview](https://arxiv.org/abs/2008.05756). arXiv preprint. Practical overview of multi-class accuracy, precision/recall averaging, MCC, and kappa.
 - Chicco, D. et al. (2020). [The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation](https://doi.org/10.1186/s12864-019-6413-7). BMC Genomics. Argues MCC is more informative than F1 and accuracy on imbalanced binary data.
 - Tharwat, A. (2020). [Classification assessment methods](https://doi.org/10.1016/j.aci.2018.08.003). Applied Computing and Informatics. Tutorial-style review of confusion-matrix metrics, ROC, and multi-class extensions.
+- Sagawa, S. et al. (2020). [Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization](https://arxiv.org/abs/1911.08731). International Conference on Learning Representations (ICLR). Group DRO: models that are accurate on average can fail on atypical groups, so training and reporting target worst-group accuracy.
 - Chicco, D. et al. (2021). [The Matthews correlation coefficient (MCC) is more reliable than balanced accuracy, bookmaker informedness, and markedness in two-class confusion matrix evaluation](https://doi.org/10.1186/s13040-021-00244-z). BioData Mining. Directly compares MCC with balanced accuracy and related two-class metrics.
 - Chicco, D. et al. (2023). [The Matthews correlation coefficient (MCC) should replace the ROC AUC as the standard metric for assessing binary classification](https://doi.org/10.1186/s13040-023-00322-4). BioData Mining. Follow-up argument for MCC over ROC AUC.
 - Opitz, J. (2024). [A Closer Look at Classification Evaluation Metrics and a Critical Reflection of Common Evaluation Practice](https://doi.org/10.1162/tacl_a_00675). Transactions of the Association for Computational Linguistics. Examines accuracy, macro/micro F1, kappa, MCC and their behavior under imbalance.
@@ -311,11 +328,26 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 </details>
 
 <details>
-<summary><strong>Multi-metric and holistic evaluation</strong> (3)</summary>
+<summary><strong>Multi-metric and multi-benchmark evaluation</strong> (8)</summary>
 
+- Wang, A. et al. (2019). [GLUE: A Multi-Task Benchmark and Analysis Platform for Natural Language Understanding](https://arxiv.org/abs/1804.07461). International Conference on Learning Representations (ICLR). Scores a model across a range of language understanding tasks instead of one, with a diagnostic suite for finer analysis.
 - Ribeiro, M. T. et al. (2020). [Beyond Accuracy: Behavioral Testing of NLP Models with CheckList](https://doi.org/10.18653/v1/2020.acl-main.442). Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics. Capability-level test suites in place of one aggregate accuracy.
+- Dehghani, M. et al. (2021). [The Benchmark Lottery](https://arxiv.org/abs/2107.07002). arXiv preprint. Shows that the relative performance of methods can change significantly with the choice of benchmark tasks.
+- Raji, I. D. et al. (2021). [AI and the Everything in the Whole Wide World Benchmark](https://arxiv.org/abs/2111.15366). NeurIPS Datasets and Benchmarks Track. Position paper on the construct validity of treating a few benchmarks as general measures of progress.
 - Liang, P. et al. (2022). [Holistic Evaluation of Language Models](https://arxiv.org/abs/2211.09110). Transactions on Machine Learning Research (2023). Reports many metrics (accuracy, calibration, robustness, fairness, efficiency) across scenarios rather than one score.
+- Srivastava, A. et al. (2022). [Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models](https://arxiv.org/abs/2206.04615). Transactions on Machine Learning Research. BIG-bench: 204 tasks contributed by 450 authors to probe language models from many directions at once.
+- Burnell, R. et al. (2023). [Rethink reporting of evaluation results in AI](https://doi.org/10.1126/science.adf6369). Science 380(6641). Argues that aggregate metrics and unreleased results limit what can be learned about an AI system.
 - Maier-Hein, L. et al. (2024). [Metrics reloaded: recommendations for image analysis validation](https://doi.org/10.1038/s41592-023-02151-z). Nature Methods. Problem-driven framework for choosing validation metrics, with explicit treatment of class imbalance.
+
+</details>
+
+<details>
+<summary><strong>Long tails in foundation models</strong> (4)</summary>
+
+- Zhao, T. Z. et al. (2021). [Calibrate Before Use: Improving Few-Shot Performance of Language Models](https://arxiv.org/abs/2102.09690). International Conference on Machine Learning (ICML). Few-shot GPT-3 prompts are biased toward certain answers, including those common in the pre-training data; contextual calibration removes much of the bias.
+- Kandpal, N. et al. (2023). [Large Language Models Struggle to Learn Long-Tail Knowledge](https://arxiv.org/abs/2211.08411). International Conference on Machine Learning (ICML). A language model's accuracy on a factual question tracks how many pre-training documents are relevant to it.
+- Parashar, S. et al. (2024). [The Neglected Tails in Vision-Language Models](https://arxiv.org/abs/2401.12425). IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). Measures the long-tailed concept distribution in vision-language pre-training data and the imbalanced zero-shot accuracy that follows from it.
+- Udandarao, V. et al. (2024). [No "Zero-Shot" Without Exponential Data: Pretraining Concept Frequency Determines Multimodal Model Performance](https://arxiv.org/abs/2404.04125). Advances in Neural Information Processing Systems (NeurIPS). Across 34 multimodal models, linear gains in zero-shot performance on a concept take exponentially more pre-training data for it.
 
 </details>
 
@@ -335,7 +367,16 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 </details>
 
 <details>
-<summary><strong>Per-class experts and mixture of experts</strong> (11)</summary>
+<summary><strong>Data selection and pruning</strong> (3)</summary>
+
+- Paul, M. et al. (2021). [Deep Learning on a Data Diet: Finding Important Examples Early in Training](https://arxiv.org/abs/2107.07075). Advances in Neural Information Processing Systems (NeurIPS). Scores computed early in training pick out the examples that matter, so large fractions of the training set can be pruned without losing test accuracy.
+- Sorscher, B. et al. (2022). [Beyond neural scaling laws: beating power law scaling via data pruning](https://arxiv.org/abs/2206.14486). Advances in Neural Information Processing Systems (NeurIPS). Shows that pruning with a good ranking of examples can beat the power-law scaling of error with dataset size, and benchmarks ten pruning metrics on ImageNet.
+- Vysogorets, A. et al. (2025). [DRoP: Distributionally Robust Data Pruning](https://arxiv.org/abs/2404.05579). International Conference on Learning Representations (ICLR). Finds that existing pruning algorithms can produce highly biased classifiers and sets class-wise pruning ratios to protect worst-class performance.
+
+</details>
+
+<details>
+<summary><strong>Per-class experts and mixture of experts</strong> (14)</summary>
 
 - Jacobs, R. A. et al. (1991). [Adaptive Mixtures of Local Experts](https://doi.org/10.1162/neco.1991.3.1.79). Neural Computation. Original mixture-of-experts with a gating network.
 - Shazeer, N. et al. (2017). [Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer](https://arxiv.org/abs/1701.06538). International Conference on Learning Representations (ICLR). Sparse top-k gating makes very large MoE layers practical.
@@ -346,13 +387,16 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 - Li, J. et al. (2022). [Nested Collaborative Learning for Long-Tailed Visual Recognition](https://arxiv.org/abs/2203.15359). IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). Multi-expert collaborative training with hard-category mining.
 - Fedus, W. et al. (2022). [Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity](https://jmlr.org/papers/v23/21-0998.html). Journal of Machine Learning Research 23(120). Single-expert routing that simplifies sparse MoE training.
 - Sanchez Aimar, E. et al. (2023). [Balanced Product of Calibrated Experts for Long-Tailed Recognition](https://arxiv.org/abs/2206.05260). IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). BalPoE combines calibrated experts to be Fisher-consistent for balanced error.
+- Shnitzer, T. et al. (2023). [Large Language Model Routing with Benchmark Datasets](https://arxiv.org/abs/2309.15789). arXiv preprint. No single LLM is best on every task, so benchmark results are reused to learn a router that picks a model for each new task.
+- Chen, L. et al. (2023). [FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance](https://arxiv.org/abs/2305.05176). Transactions on Machine Learning Research (2024). An LLM cascade that learns which combinations of models to use for which queries.
 - Jiang, A. Q. et al. (2024). [Mixtral of Experts](https://arxiv.org/abs/2401.04088). arXiv preprint. Open-weights sparse MoE language model.
 - Cai, W. et al. (2025). [A Survey on Mixture of Experts in Large Language Models](https://doi.org/10.1109/TKDE.2025.3554028). IEEE Transactions on Knowledge and Data Engineering. Recent survey of MoE design and training.
+- Ong, I. et al. (2025). [RouteLLM: Learning to Route LLMs with Preference Data](https://arxiv.org/abs/2406.18665). International Conference on Learning Representations (ICLR). Routers that choose between a stronger and a weaker LLM for each query, trained on human preference data.
 
 </details>
 
 <details>
-<summary><strong>Open-source and reproducibility</strong> (8)</summary>
+<summary><strong>Open-source and reproducibility</strong> (10)</summary>
 
 - Lunardon, N. et al. (2014). [ROSE: a Package for Binary Imbalanced Learning](https://doi.org/10.32614/RJ-2014-008). The R Journal. Software paper for the R package ROSE.
 - Lemaitre, G. et al. (2017). [Imbalanced-learn: A Python Toolbox to Tackle the Curse of Imbalanced Datasets in Machine Learning](https://jmlr.org/papers/v18/16-365.html). Journal of Machine Learning Research 18(17). Software paper for imbalanced-learn.
@@ -361,7 +405,9 @@ The climbR package described in Chapter 6 is not currently published on CRAN, R-
 - Kovacs, G. (2019). [smote-variants: a Python Implementation of 85 Minority Oversampling Techniques](https://doi.org/10.1016/j.neucom.2019.06.100). Neurocomputing. Software paper for smote-variants.
 - Pineau, J. et al. (2021). [Improving Reproducibility in Machine Learning Research](https://jmlr.org/papers/v22/20-303.html). Journal of Machine Learning Research 22(164). Report on the NeurIPS 2019 reproducibility program and checklist.
 - Liu, Z. et al. (2021). [IMBENS: Ensemble Class-imbalanced Learning in Python](https://arxiv.org/abs/2111.12776). arXiv preprint. Software paper for imbalanced-ensemble.
+- von Werra, L. et al. (2022). [Evaluate & Evaluation on the Hub: Better Best Practices for Data and Model Measurements](https://doi.org/10.18653/v1/2022.emnlp-demos.13). Conference on Empirical Methods in Natural Language Processing: System Demonstrations. Software paper for Hugging Face Evaluate, a shared library of documented metric implementations.
 - Wisam, E. et al. (2024). [Imbalance: A comprehensive multi-interface Julia toolbox to address class imbalance](https://doi.org/10.21105/joss.06310). Journal of Open Source Software. Julia resampling toolbox (Imbalance.jl) with MLJ integration.
+- Biderman, S. et al. (2024). [Lessons from the Trenches on Reproducible Evaluation of Language Models](https://arxiv.org/abs/2405.14782). arXiv preprint. Guidance on reproducible LLM evaluation from the developers of the lm-eval harness.
 
 </details>
 

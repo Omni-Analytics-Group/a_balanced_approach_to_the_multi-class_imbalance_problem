@@ -93,27 +93,27 @@
 
       <section id="lineage">
         <h2>2013 to today</h2>
-        <p class="section-note">The dissertation made five moves that later became common practice in machine learning. The later work listed here follows the same line of thought. It does not necessarily descend from the dissertation.</p>
+        <p class="section-note">The dissertation made five moves that later became common practice in machine learning. The later work listed here follows the same line of thought. It does not necessarily descend from the dissertation. The same questions now come up for deep networks and large language models, where classes have become tasks, training sets have become pre-training corpora, and ensembles have become routers.</p>
         <div class="card lineage">
           <div class="row">
             <div><div class="then">A metric built for skewed classes</div><div class="chapter">Class Balance Accuracy, Chapter 3</div></div>
-            <p>Later metrics extend the idea directly: relevance-weighted CBA (Branco et al., 2017), the Class Balance Metrics family (Luque et al., 2019), and the Imbalance Accuracy Metric (Mortaz, 2020). Large validation efforts such as Metrics Reloaded (2024) now treat class imbalance as a first question when choosing a metric.</p>
+            <p>Later metrics extend the idea directly: relevance-weighted CBA (Branco et al., 2017), the Class Balance Metrics family (Luque et al., 2019), and the Imbalance Accuracy Metric (Mortaz, 2020). Large validation efforts such as Metrics Reloaded (2024) now treat class imbalance as a first question when choosing a metric. In foundation models the long tail sits in the pre-training data: a language model's accuracy on a fact tracks how often it appeared in pre-training (Kandpal et al., 2023), and robustness work reports worst-group accuracy next to the average (Sagawa et al., 2020).</p>
           </div>
           <div class="row">
             <div><div class="then">Report several metrics, not one</div><div class="chapter">Measure comparisons, Chapters 2 and 3</div></div>
-            <p>The dissertation compares accuracy, balanced accuracy, G-mean, F-score, MCC, and entropy measures side by side and shows where each fails. Model Cards (2019), the case for MCC over F1 and accuracy (2020), and HELM for language models (2022) made multi-metric reporting the norm.</p>
+            <p>The dissertation compares accuracy, balanced accuracy, G-mean, F-score, MCC, and entropy measures side by side and shows where each fails. Model Cards (2019), the case for MCC over F1 and accuracy (2020), and HELM for language models (2022) made multi-metric reporting the norm. Several metrics became several benchmarks: GLUE (2019) and BIG-bench (2022) score a model on many tasks at once, and The Benchmark Lottery (2021) showed that rankings change with the choice of tasks, the way they change with the choice of metric.</p>
           </div>
           <div class="row">
             <div><div class="then">Optimize the balanced objective</div><div class="chapter">Instance selection by CBA, Chapter 4</div></div>
-            <p>Chapter 4 selects training subsets to maximize CBA instead of accuracy. Deep learning reached the same goal through the loss: focal loss (2017), class-balanced loss and LDAM (2019), and logit adjustment (2021), which targets balanced error directly.</p>
+            <p>Chapter 4 selects training subsets to maximize CBA instead of accuracy. Deep learning reached the same goal through the loss: focal loss (2017), class-balanced loss and LDAM (2019), and logit adjustment (2021), which targets balanced error directly. Instance selection itself returned as data pruning (2021, 2022), and DRoP (2025) found that existing pruning algorithms can produce highly biased classifiers, and set pruning ratios class by class to protect the worst-performing class.</p>
           </div>
           <div class="row">
             <div><div class="then">One expert per class</div><div class="chapter">Class Expert Ensembling, Chapter 5</div></div>
-            <p>Class Expert Ensembling assigns the best model to each class with an assignment program. Long-tailed recognition later built multi-expert models on the same intuition: LFME (2020), RIDE and ACE (2021), SADE (2022), and BalPoE (2023). Mixture-of-experts routing now runs inside large language models such as Mixtral (2024).</p>
+            <p>Class Expert Ensembling assigns the best model to each class with an assignment program. Long-tailed recognition later built multi-expert models on the same intuition: LFME (2020), RIDE and ACE (2021), SADE (2022), and BalPoE (2023). Mixture-of-experts routing now runs inside large language models such as Mixtral (2024). Between models, routers pick the language model best suited to each task or query: Shnitzer et al. (2023), FrugalGPT (2023), and RouteLLM (2025).</p>
           </div>
           <div class="row">
             <div><div class="then">Ship the code</div><div class="chapter">The climbR package, Chapter 6</div></div>
-            <p>The dissertation closed with an open-source R package and a call for a shared repository of imbalance tools. That role is now filled by imbalanced-learn (2017), PyCM (2018), Multi-Imbalance (2019), and reproducibility checklists at the major conferences (2021).</p>
+            <p>The dissertation closed with an open-source R package and a call for a shared repository of imbalance tools. That role is now filled by imbalanced-learn (2017), PyCM (2018), Multi-Imbalance (2019), and reproducibility checklists at the major conferences (2021). For language models, Hugging Face Evaluate (2022) and the lm-eval harness (2024) are shared homes for evaluation code.</p>
           </div>
         </div>
       </section>
