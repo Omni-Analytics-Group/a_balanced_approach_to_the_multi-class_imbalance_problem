@@ -42,11 +42,23 @@ Because all counts are nonnegative, $0\le d_i\le a_i$ and $0\le d_i\le b_i$. No 
 
 Define per-class precision and recall by
 
-$$
-P_i=\begin{cases}d_i/b_i&b_i>0,\\0&b_i=0,\end{cases}
-\qquad
-R_i=\begin{cases}d_i/a_i&a_i>0,\\0&a_i=0.\end{cases}
-$$
+```math
+P_i = \left\{
+\begin{array}{ll}
+\dfrac{d_i}{b_i}, & \text{if } b_i > 0, \\
+0, & \text{if } b_i = 0.
+\end{array}
+\right\}
+```
+
+```math
+R_i = \left\{
+\begin{array}{ll}
+\dfrac{d_i}{a_i}, & \text{if } a_i > 0, \\
+0, & \text{if } a_i = 0.
+\end{array}
+\right\}
+```
 
 This is the repository's convention: when a class has no predictions, its precision is 0; when it has no actual members, its recall is 0. Since $d_i\le a_i,b_i$, either zero denominator implies $d_i=0$. In Lean's real-number field, `0 / 0 = 0`; thus the definitions can be written directly using division. This **totalized division convention is important**: ordinary analysis often treats 0/0 as undefined.
 
