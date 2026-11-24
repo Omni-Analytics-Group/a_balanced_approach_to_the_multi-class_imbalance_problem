@@ -281,11 +281,14 @@ The original repository's `src/cba.py` identifies two Figure 3.1 confusion matri
 
 ### 6.1 Predict-all-majority classifier
 
-$$
-C_{\mathrm{majority}}=\begin{bmatrix}
-2000&0&0\\600&0&0\\600&0&0
+```math
+C_{\mathrm{majority}} =
+\begin{bmatrix}
+2000 & 0 & 0 \\
+600 & 0 & 0 \\
+600 & 0 & 0
 \end{bmatrix}.
-$$
+```
 
 There are 3,200 observations and 2,000 correct predictions, so accuracy is $2000/3200=5/8=62.5\%$. Precision, recall, and CBA follow:
 
@@ -302,11 +305,14 @@ The deficit $D=0$ because $P_i\le R_i$ for every class. This is a good reminder 
 
 ### 6.2 Partitioned three-class classifier
 
-$$
-C_{\mathrm{partitioned}}=\begin{bmatrix}
-1000&500&500\\100&500&0\\100&0&500
+```math
+C_{\mathrm{partitioned}} =
+\begin{bmatrix}
+1000 & 500 & 500 \\
+100 & 500 & 0 \\
+100 & 0 & 500
 \end{bmatrix}.
-$$
+```
 
 Accuracy is again $2000/3200=5/8=62.5\%$, but
 
@@ -332,10 +338,13 @@ The classwise directions are mixed: the majority class has $P>R$, whereas both s
 
 ### 6.3 Simple two-class counterexample to equality
 
-$$
-C=\begin{bmatrix}1&1\\0&1\end{bmatrix},\quad
-P=(1,1/2),\quad R=(1/2,1).
-$$
+```math
+C = \begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix},\qquad
+P = (1, 1/2),\qquad R = (1/2, 1).
+```
 
 Then $\overline P=\overline R=3/4$ while $\mathrm{CBA}=1/2$. Thus taking the minimum *after* macro averaging would have returned 75%, overstating CBA by 25 percentage points.
 
