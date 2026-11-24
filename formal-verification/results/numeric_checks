@@ -1,0 +1,504 @@
+{
+  "exhaustive_families": {
+    "2x2_entries_0_to_5": 1296,
+    "3x3_entries_0_to_1": 512,
+    "4x4_entries_0_to_1": 65536
+  },
+  "named_examples": {
+    "absent_class": {
+      "accuracy": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "cba": {
+        "decimal": 0.6666666667,
+        "fraction": "2/3"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 3,
+      "macro_precision": {
+        "decimal": 0.6666666667,
+        "fraction": "2/3"
+      },
+      "macro_recall": {
+        "decimal": 0.6666666667,
+        "fraction": "2/3"
+      },
+      "p": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ]
+    },
+    "all_zero": {
+      "accuracy": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "cba": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 2,
+      "macro_precision": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "macro_recall": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "p": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ]
+    },
+    "figure_3_1_majority": {
+      "accuracy": {
+        "decimal": 0.625,
+        "fraction": "5/8"
+      },
+      "cba": {
+        "decimal": 0.2083333333,
+        "fraction": "5/24"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 3,
+      "macro_precision": {
+        "decimal": 0.2083333333,
+        "fraction": "5/24"
+      },
+      "macro_recall": {
+        "decimal": 0.3333333333,
+        "fraction": "1/3"
+      },
+      "p": [
+        {
+          "decimal": 0.625,
+          "fraction": "5/8"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 0.625,
+          "fraction": "5/8"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        },
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ]
+    },
+    "figure_3_1_partitioned": {
+      "accuracy": {
+        "decimal": 0.625,
+        "fraction": "5/8"
+      },
+      "cba": {
+        "decimal": 0.5,
+        "fraction": "1/2"
+      },
+      "gap": {
+        "decimal": 0.1111111111,
+        "fraction": "1/9"
+      },
+      "gap_rhs": {
+        "decimal": 0.1111111111,
+        "fraction": "1/9"
+      },
+      "k": 3,
+      "macro_precision": {
+        "decimal": 0.6111111111,
+        "fraction": "11/18"
+      },
+      "macro_recall": {
+        "decimal": 0.7222222222,
+        "fraction": "13/18"
+      },
+      "p": [
+        {
+          "decimal": 0.8333333333,
+          "fraction": "5/6"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 0.8333333333,
+          "fraction": "5/6"
+        },
+        {
+          "decimal": 0.8333333333,
+          "fraction": "5/6"
+        }
+      ]
+    },
+    "one_class": {
+      "accuracy": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "cba": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 1,
+      "macro_precision": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "macro_recall": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "p": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ]
+    },
+    "one_class_empty": {
+      "accuracy": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "cba": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 1,
+      "macro_precision": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "macro_recall": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "p": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 0.0,
+          "fraction": "0"
+        }
+      ]
+    },
+    "perfect": {
+      "accuracy": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "cba": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "gap": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "gap_rhs": {
+        "decimal": 0.0,
+        "fraction": "0"
+      },
+      "k": 3,
+      "macro_precision": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "macro_recall": {
+        "decimal": 1.0,
+        "fraction": "1"
+      },
+      "p": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ]
+    },
+    "two_class_strict_counterexample": {
+      "accuracy": {
+        "decimal": 0.6666666667,
+        "fraction": "2/3"
+      },
+      "cba": {
+        "decimal": 0.5,
+        "fraction": "1/2"
+      },
+      "gap": {
+        "decimal": 0.25,
+        "fraction": "1/4"
+      },
+      "gap_rhs": {
+        "decimal": 0.25,
+        "fraction": "1/4"
+      },
+      "k": 2,
+      "macro_precision": {
+        "decimal": 0.75,
+        "fraction": "3/4"
+      },
+      "macro_recall": {
+        "decimal": 0.75,
+        "fraction": "3/4"
+      },
+      "p": [
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        }
+      ],
+      "per_class_cba": [
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        }
+      ],
+      "r": [
+        {
+          "decimal": 0.5,
+          "fraction": "1/2"
+        },
+        {
+          "decimal": 1.0,
+          "fraction": "1"
+        }
+      ]
+    }
+  },
+  "properties_checked_per_matrix": [
+    "Equation 3.4 equals mean per-class min(P,R)",
+    "Theorem 3.2.1 bound",
+    "0 <= CBA <= 1",
+    "exact gap identity",
+    "equality iff all per-class comparisons are aligned",
+    "strict gap iff both strict orientations occur"
+  ],
+  "random_cases": 10000,
+  "repository_reference_comparisons": 0,
+  "repository_reference_found": false,
+  "seed": 2013,
+  "status": "PASS",
+  "total_matrices_checked": 77352,
+  "type": "independent computational checks; not Lean kernel verification"
+}
