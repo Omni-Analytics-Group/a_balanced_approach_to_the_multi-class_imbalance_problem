@@ -1,0 +1,11 @@
+name = "mosley-cba-verification"
+version = "0.1.0"
+defaultTargets = ["MosleyCBA"]
+
+[[lean_lib]]
+name = "MosleyCBA"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.36.0"
