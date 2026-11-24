@@ -120,6 +120,42 @@ cba = np.mean(np.diag(cm) / np.maximum(cm.sum(axis=0), cm.sum(axis=1)))
 
 `sklearn.metrics.balanced_accuracy_score` computes macro recall, not CBA.
 
+## Formal verification of Class Balance Accuracy with Lean 4
+
+> [!IMPORTANT]
+> **Machine-checked mathematics.** The CBA formalization was compiled successfully with **Lean 4.36.0 + Mathlib** using warning-as-error builds. A separate axiom audit of nine central theorems found only `propext`, `Classical.choice`, and `Quot.sound`—**no `sorryAx`**. See the [verification record](formal-verification/results/LEAN_STATUS.md).
+
+The dissertation introduced **Class Balance Accuracy (CBA)** to evaluate multi-class classifiers, particularly in the presence of class imbalance. The formalization in [`formal-verification/`](formal-verification/README.md) connects the original confusion-matrix definition (Equation 3.4) to its more intuitive per-class form, treating unobserved or unpredicted classes explicitly under the repository's zero-denominator convention:
+
+$$
+\mathrm{CBA}=\frac{1}{k}\sum_{i=1}^{k}\frac{c_{ii}}{\max(a_i,b_i)}
+=\frac{1}{k}\sum_{i=1}^{k}\min(P_i,R_i),
+$$
+
+where $a_i$ and $b_i$ are actual and predicted class counts, and $P_i$ and $R_i$ are per-class precision and recall. A class with zero actual and predicted count contributes **0** but remains one of the $k$ declared classes.
+
+### Three formal results
+
+| Result | Mathematical statement | Lean theorem |
+|:--|:--|:--|
+| **Dissertation Theorem 3.2.1** | $\mathrm{CBA} \leq \min(\bar P,\bar R)$ | `originalFormula_le_min_macro` |
+| **Exact gap (companion extension)** | $\min(\bar{P},\bar{R})-\mathrm{CBA}=\frac{1}{2}\left(\overline{\lvert P-R\rvert}-\lvert\bar{P}-\bar{R}\rvert\right)$ | `cba_gap_identity` |
+| **Sharp equality test (companion extension)** | Equality holds iff every class has $P_i\le R_i$, **or** every class has $R_i\le P_i$ | `cba_eq_min_macro_iff` |
+
+The exact gap quantifies how classwise precision–recall trade-offs can cancel when calculating macro averages even though they remain visible in CBA. The formalization also checks the strict-inequality criterion, the $[0,1]$ bounds for genuine confusion matrices, and the dissertation's Figure 3.1 examples. **The gap and equality characterizations are derived extensions presented here, not claims of originality in the 2013 dissertation.**
+
+### Same overall accuracy, different class balance
+
+| Figure 3.1 classifier | Overall accuracy | CBA |
+|:--|--:|--:|
+| Always predicts the majority class | 62.5% | **20.83%** |
+| Three-class partitioned classifier | 62.5% | **50.00%** |
+
+The numerical audit also passed **77,352 exact-rational confusion-matrix checks**. That is independent supporting evidence, distinct from the universally quantified Lean proofs. Comparison against `src/cba.py` remains to be rerun from a repository clone.
+
+**Reproduce:** [Full theoretical companion](formal-verification/THEORY.md) · [Lean sources](formal-verification/MosleyCBA/) · [Build instructions](formal-verification/README.md) · [Successful strict-build and axiom record](formal-verification/results/LEAN_STATUS.md) · [Numerical audit](formal-verification/results/numeric_checks.json)
+
+
 ## What else is in the dissertation
 
 CBA is Chapter 3. The other chapters put the metric to work.
