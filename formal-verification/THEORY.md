@@ -30,15 +30,15 @@ We separate three types of evidence: **ordinary mathematical proof** on these pa
 
 ### 2.1 Confusion matrix
 
-Let \(I\) be a finite nonempty set of classes, with \(k=|I|\ge1\), and let
-\(C=(c_{ij})_{i,j\in I}\) be a matrix of **nonnegative integer** counts:
+Let $I$ be a finite nonempty set of classes, with $k=\lvert I\rvert \ge1$, and let
+$C=(c_{ij})_{i,j\in I}$ be a matrix of **nonnegative integer** counts:
 
-- \(c_{ij}\): instances whose true label is \(i\) and predicted label is \(j\).
-- \(d_i=c_{ii}\): correct predictions for class \(i\).
-- \(a_i=\sum_j c_{ij}\): actual support, or row total.
-- \(b_i=\sum_j c_{ji}\): predicted support, or column total.
+- $c_{ij}$: instances whose true label is $i$ and predicted label is $j$.
+- $d_i=c_{ii}$: correct predictions for class $i$.
+- $a_i=\sum_j c_{ij}$: actual support, or row total.
+- $b_i=\sum_j c_{ji}$: predicted support, or column total.
 
-Because all counts are nonnegative, \(0\le d_i\le a_i\) and \(0\le d_i\le b_i\). No assumption is made that every class occurs or is predicted.
+Because all counts are nonnegative, $0\le d_i\le a_i$ and $0\le d_i\le b_i$. No assumption is made that every class occurs or is predicted.
 
 Define per-class precision and recall by
 
@@ -48,21 +48,24 @@ P_i=\begin{cases}d_i/b_i&b_i>0,\\0&b_i=0,\end{cases}
 R_i=\begin{cases}d_i/a_i&a_i>0,\\0&a_i=0.\end{cases}
 $$
 
-This is the repository's convention: when a class has no predictions, its precision is 0; when it has no actual members, its recall is 0. Since \(d_i\le a_i,b_i\), either zero denominator implies \(d_i=0\). In Lean's real-number field, `0 / 0 = 0`; thus the definitions can be written directly using division. This **totalized division convention is important**: ordinary analysis often treats 0/0 as undefined.
+This is the repository's convention: when a class has no predictions, its precision is 0; when it has no actual members, its recall is 0. Since $d_i\le a_i,b_i$, either zero denominator implies $d_i=0$. In Lean's real-number field, `0 / 0 = 0`; thus the definitions can be written directly using division. This **totalized division convention is important**: ordinary analysis often treats 0/0 as undefined.
 
 The macro averages are
 
-$$\overline P=\frac1k\sum_i P_i,\qquad
-\overline R=\frac1k\sum_i R_i.$$
+$$
+\overline P=\frac1k\sum_i P_i,\qquad
+\overline R=\frac1k\sum_i R_i.
+$$
 
 The original CBA formula, Equation 3.4, is
 
 $$
-\boxed{\operatorname{CBA}(C)=\frac1k\sum_i\frac{d_i}{\max(a_i,b_i)}}.
-\tag{1}
+\boxed{\mathrm{CBA}(C)=\frac1k\sum_i\frac{d_i}{\max(a_i,b_i)}}.
 $$
 
-An absent class — one with \(a_i=b_i=0\) — contributes zero and **still occupies one of the \(k\) slots**. Do not silently remove such classes during formal verification or comparisons with external libraries.
+*Equation (1) — Original CBA formula (dissertation Equation 3.4).*
+
+An absent class — one with $a_i=b_i=0$ — contributes zero and **still occupies one of the $k$ slots**. Do not silently remove such classes during formal verification or comparisons with external libraries.
 
 ### 2.2 What does “arbitrary number of classes” mean?
 
@@ -80,17 +83,19 @@ $$
 \frac{d_i}{\max(a_i,b_i)}
 =\min\left(\frac{d_i}{a_i},\frac{d_i}{b_i}\right)
 =\min(R_i,P_i).
-\tag{2}
 $$
 
-**Proof.** Suppose first that \(a_i\le b_i\). Then \(\max(a_i,b_i)=b_i\). When \(a_i>0\), division of a nonnegative numerator by a larger positive denominator gives a smaller quotient, so \(d_i/b_i\le d_i/a_i\). When \(a_i=0\), the diagonal is zero as well, and both ratios are zero under the stated convention. The case \(b_i\le a_i\) follows symmetrically. ◻
+*Equation (2) — Termwise equivalence.*
+
+**Proof.** Suppose first that $a_i\le b_i$. Then $\max(a_i,b_i)=b_i$. When $a_i>0$, division of a nonnegative numerator by a larger positive denominator gives a smaller quotient, so $d_i/b_i\le d_i/a_i$. When $a_i=0$, the diagonal is zero as well, and both ratios are zero under the stated convention. The case $b_i\le a_i$ follows symmetrically. ◻
 
 Average (2) over classes:
 
 $$
 \boxed{\mathrm{CBA}=\frac1k\sum_i\min(P_i,R_i)}.
-\tag{3}
 $$
+
+*Equation (3) — CBA as the mean of per-class minima.*
 
 The Lean file `MosleyCBA/Core.lean` gives `ratio_max_eq_min_div`, `originalTerm_eq_min`, and `originalFormula_eq_cbaOfMatrix` as Lean-checked proofs. The intermediate diagonal inequalities guarantee that the proof remains valid when a denominator is zero.
 
@@ -106,24 +111,28 @@ $$
 \boxed{\mathrm{CBA}\le\overline P
 \quad\text{and}\quad
 \mathrm{CBA}\le\overline R.}
-\tag{4}
 $$
+
+*Equation (4) — Simultaneous macro-average bounds.*
 
 Equivalently,
 
 $$
 \boxed{\mathrm{CBA}\le\min(\overline P,\overline R)}.
-\tag{5}
 $$
 
-**Proof.** For every \(i\),
+*Equation (5) — Bound by the smaller macro average.*
 
-$$\min(P_i,R_i)\le P_i,
-\qquad \min(P_i,R_i)\le R_i.$$
+**Proof.** For every $i$,
 
-Summing each inequality and dividing by \(k>0\) gives (4). ◻
+$$
+\min(P_i,R_i)\le P_i,
+\qquad \min(P_i,R_i)\le R_i.
+$$
 
-This argument requires **no** independence, distributional assumptions, class-size constraints, or even that the vectors came from a confusion matrix. It works for any real-valued functions \(P,R:I\to\mathbb{R}\). The confusion-matrix version is obtained by substituting the definitions of precision and recall.
+Summing each inequality and dividing by $k>0$ gives (4). ◻
+
+This argument requires **no** independence, distributional assumptions, class-size constraints, or even that the vectors came from a confusion matrix. It works for any real-valued functions $P,R:I\to\mathbb{R}$. The confusion-matrix version is obtained by substituting the definitions of precision and recall.
 
 **Interpretation:** A CBA of 0.80 implies that both the macro precision and macro recall are at least 0.80. The converse is generally false. Importantly, the theorem says **“lower than each average”**, not **“equal to the smaller average.”**
 
@@ -135,42 +144,53 @@ Lean theorem names: `cba_le_min_macro` (abstract), `cbaOfMatrix_le_min_macro`, a
 
 Define the **CBA deficit** relative to the smaller macro average by
 
-$$D=\min(\overline P,\overline R)-\mathrm{CBA}.$$
+$$
+D=\min(\overline P,\overline R)-\mathrm{CBA}.
+$$
 
-The dissertation's theorem guarantees \(D\ge0\). We can say *exactly* how much lower CBA is.
+The dissertation's theorem guarantees $D\ge0$. We can say *exactly* how much lower CBA is.
 
 ### Theorem 2 (derived extension)
 
 $$
 \boxed{
 D=\frac12\left[
-\frac1k\sum_i|P_i-R_i|-
-|\overline P-\overline R|
+\frac1k\sum_i\lvert P_i-R_i\rvert -
+\lvert \overline P-\overline R\rvert 
 \right].}
-\tag{6}
 $$
 
-**Proof.** For any real numbers \(x,y\),
+*Equation (6) — Exact CBA gap identity.*
 
-$$\min(x,y)=\frac{x+y-|x-y|}{2}.$$
+**Proof.** For any real numbers $x,y$,
 
-Apply this identity to each \((P_i,R_i)\) inside the CBA sum:
+$$
+\min(x,y)=\frac{x+y-\lvert x-y\rvert }{2}.
+$$
 
-$$\mathrm{CBA}=\frac{\overline P+\overline R}{2}-
-\frac1{2k}\sum_i|P_i-R_i|.$$
+Apply this identity to each $(P_i,R_i)$ inside the CBA sum:
 
-Apply the same identity to \((\overline P,\overline R)\):
+$$
+\mathrm{CBA}=\frac{\overline P+\overline R}{2}-
+\frac1{2k}\sum_i\lvert P_i-R_i\rvert .
+$$
 
-$$\min(\overline P,\overline R)
+Apply the same identity to $(\overline P,\overline R)$:
+
+$$
+\min(\overline P,\overline R)
 =\frac{\overline P+\overline R}{2}-
-\frac12|\overline P-\overline R|.$$
+\frac12\lvert \overline P-\overline R\rvert .
+$$
 
 Subtract to obtain (6). ◻
 
 The finite-sum triangle inequality gives
 
-$$\left|\frac1k\sum_i(P_i-R_i)\right|
-\le\frac1k\sum_i|P_i-R_i|.$$
+$$
+\left\lvert\frac1k\sum_i(P_i-R_i)\right\rvert
+\le\frac1k\sum_i\lvert P_i-R_i\rvert .
+$$
 
 Consequently, the right-hand side of (6) is always nonnegative — an independent explanation of the original lower-bound result.
 
@@ -178,12 +198,18 @@ Consequently, the right-hand side of (6) is always nonnegative — an independen
 
 For additional intuition, let
 
-$$A=\sum_i\max(P_i-R_i,0),\qquad
-B=\sum_i\max(R_i-P_i,0).$$
+$$
+A=\sum_i\max(P_i-R_i,0),\qquad
+B=\sum_i\max(R_i-P_i,0).
+$$
 
-Then \(\sum_i|P_i-R_i|=A+B\), \(\sum_i(P_i-R_i)=A-B\), so the deficit is also
+Then $\sum_i\lvert P_i-R_i\rvert =A+B$, $\sum_i(P_i-R_i)=A-B$, so the deficit is also
 
-$$\boxed{D=\frac{\min(A,B)}{k}}.\tag{7}$$
+$$
+\boxed{D=\frac{\min(A,B)}{k}}.
+$$
+
+*Equation (7) — Equivalent formula for the gap.*
 
 Equation (7) shows that the deficit is the smaller total of the two *opposing* precision/recall tendencies. It is a useful alternative interpretation derived by ordinary algebra; this particular rearrangement is **not yet a separate Lean theorem in the accompanying verification release**.
 
@@ -201,22 +227,27 @@ $$
 \ \lor\
 \bigl(\forall i:\ R_i\le P_i\bigr).
 }
-\tag{8}
 $$
 
-The two conditions overlap whenever all \(P_i=R_i\); equality within some classes is fine.
+*Equation (8) — Equality characterization.*
 
-**Proof.** If \(P_i\le R_i\) in every class, then every minimum is \(P_i\), so \(\mathrm{CBA}=\overline P\). Since the original theorem also shows \(\mathrm{CBA}\le\overline R\), this is the smaller macro average. The case \(R_i\le P_i\) is symmetric.
+The two conditions overlap whenever all $P_i=R_i$; equality within some classes is fine.
 
-Conversely, the smaller macro average equals either \(\overline P\) or \(\overline R\). Suppose \(\mathrm{CBA}=\overline P\). Then
+**Proof.** If $P_i\le R_i$ in every class, then every minimum is $P_i$, so $\mathrm{CBA}=\overline P$. Since the original theorem also shows $\mathrm{CBA}\le\overline R$, this is the smaller macro average. The case $R_i\le P_i$ is symmetric.
 
-$$\sum_i\big(P_i-\min(P_i,R_i)\big)=0.$$
+Conversely, the smaller macro average equals either $\overline P$ or $\overline R$. Suppose $\mathrm{CBA}=\overline P$. Then
 
-Every summand is nonnegative. A finite sum of nonnegative reals can be zero only when *every* summand is zero. Thus \(P_i=\min(P_i,R_i)\), hence \(P_i\le R_i\) for every class. The alternative \(\mathrm{CBA}=\overline R\) gives the other orientation. ◻
+$$
+\sum_i\big(P_i-\min(P_i,R_i)\big)=0.
+$$
 
-**Corollary (strictness).** CBA is *strictly* below both the minimum macro average in (5) precisely when there are classes \(i,j\) such that
+Every summand is nonnegative. A finite sum of nonnegative reals can be zero only when *every* summand is zero. Thus $P_i=\min(P_i,R_i)$, hence $P_i\le R_i$ for every class. The alternative $\mathrm{CBA}=\overline R$ gives the other orientation. ◻
 
-$$P_i<R_i\quad\text{and}\quad R_j<P_j.$$
+**Corollary (strictness).** CBA is *strictly* below both the minimum macro average in (5) precisely when there are classes $i,j$ such that
+
+$$
+P_i<R_i\quad\text{and}\quad R_j<P_j.
+$$
 
 Thus one class needs to have the stricter recall constraint while another has the stricter precision constraint. The definition does **not** imply that CBA is strictly below **both individual** macro averages in all cases — only when both opposite strict inequalities appear.
 
@@ -224,11 +255,15 @@ Lean: `macroPrecision_eq_cba_iff`, `macroRecall_eq_cba_iff`, `cba_eq_min_macro_i
 
 ### 5.3 Bounds and boundary cases
 
-**Theorem 4 (derived extension).** For any natural-number confusion matrix with \(k\ge1\),
+**Theorem 4 (derived extension).** For any natural-number confusion matrix with $k\ge1$,
 
-$$\boxed{0\le\mathrm{CBA}\le1}.\tag{9}$$
+$$
+\boxed{0\le\mathrm{CBA}\le1}.
+$$
 
-**Proof.** Every per-class precision and recall is in \([0,1]\) because \(0\le d_i\le a_i,b_i\) and zero denominators are defined to give zero. Their minimum is also in \([0,1]\). The mean of \(k\) such numbers lies in \([0,1]\). ◻
+*Equation (9) — Bounds of the CBA statistic.*
+
+**Proof.** Every per-class precision and recall is in $[0,1]$ because $0\le d_i\le a_i,b_i$ and zero denominators are defined to give zero. Their minimum is also in $[0,1]$. The mean of $k$ such numbers lies in $[0,1]$. ◻
 
 Lean: `precisionOf_bounds`, `recallOf_bounds`, `cbaOfMatrix_bounds`, and `originalFormula_bounds` in `Properties.lean`.
 
@@ -252,14 +287,18 @@ C_{\mathrm{majority}}=\begin{bmatrix}
 \end{bmatrix}.
 $$
 
-There are 3,200 observations and 2,000 correct predictions, so accuracy is \(2000/3200=5/8=62.5\%\). Precision, recall, and CBA follow:
+There are 3,200 observations and 2,000 correct predictions, so accuracy is $2000/3200=5/8=62.5\%$. Precision, recall, and CBA follow:
 
-$$P=(5/8,0,0),\qquad R=(1,0,0).$$
+$$
+P=(5/8,0,0),\qquad R=(1,0,0).
+$$
 
-$$\overline P=5/24,\quad \overline R=1/3,\quad
-\mathrm{CBA}=5/24\approx20.833\%.$$
+$$
+\overline P=5/24,\quad \overline R=1/3,\quad
+\mathrm{CBA}=5/24\approx20.833\%.
+$$
 
-The deficit \(D=0\) because \(P_i\le R_i\) for every class. This is a good reminder that equality in the lower-bound theorem does **not** imply the classifier is any good.
+The deficit $D=0$ because $P_i\le R_i$ for every class. This is a good reminder that equality in the lower-bound theorem does **not** imply the classifier is any good.
 
 ### 6.2 Partitioned three-class classifier
 
@@ -269,26 +308,36 @@ C_{\mathrm{partitioned}}=\begin{bmatrix}
 \end{bmatrix}.
 $$
 
-Accuracy is again \(2000/3200=5/8=62.5\%\), but
+Accuracy is again $2000/3200=5/8=62.5\%$, but
 
-$$P=(5/6,1/2,1/2),\qquad R=(1/2,5/6,5/6),$$
+$$
+P=(5/6,1/2,1/2),\qquad R=(1/2,5/6,5/6),
+$$
 
-$$\overline P=11/18,\qquad \overline R=13/18,$$
+$$
+\overline P=11/18,\qquad \overline R=13/18,
+$$
 
-$$\mathrm{CBA}=(1/2+1/2+1/2)/3=1/2=50\%.$$
+$$
+\mathrm{CBA}=(1/2+1/2+1/2)/3=1/2=50\%.
+$$
 
 The deficit is
 
-$$D=\min(11/18,13/18)-1/2=1/9\approx11.111\%.$$
+$$
+D=\min(11/18,13/18)-1/2=1/9\approx11.111\%.
+$$
 
-The classwise directions are mixed: the majority class has \(P>R\), whereas both smaller classes have \(R>P\). The strictness condition correctly predicts a positive deficit.
+The classwise directions are mixed: the majority class has $P>R$, whereas both smaller classes have $R>P$. The strictness condition correctly predicts a positive deficit.
 
 ### 6.3 Simple two-class counterexample to equality
 
-$$C=\begin{bmatrix}1&1\\0&1\end{bmatrix},\quad
-P=(1,1/2),\quad R=(1/2,1).$$
+$$
+C=\begin{bmatrix}1&1\\0&1\end{bmatrix},\quad
+P=(1,1/2),\quad R=(1/2,1).
+$$
 
-Then \(\overline P=\overline R=3/4\) while \(\mathrm{CBA}=1/2\). Thus taking the minimum *after* macro averaging would have returned 75%, overstating CBA by 25 percentage points.
+Then $\overline P=\overline R=3/4$ while $\mathrm{CBA}=1/2$. Thus taking the minimum *after* macro averaging would have returned 75%, overstating CBA by 25 percentage points.
 
 ### 6.4 Missing classes, all-zero counts, perfect classification
 
